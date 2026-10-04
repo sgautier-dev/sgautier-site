@@ -14,7 +14,7 @@ export function Portrait() {
       />
     );
   return (
-    <figure className="portrait" data-reveal>
+    <figure className="portrait" data-reveal="visual">
       <Image
         src={portrait}
         alt="Sébastien Gautier"

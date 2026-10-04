@@ -3,7 +3,7 @@ export function HeroWorkflowDiagram() {
     <figure
       className="hero-diagram"
       data-reveal="hero-diagram"
-      data-reveal-delay="140"
+      data-reveal-delay="120"
     >
       <div className="diagram-topline" aria-hidden="true">
         <span>DU BESOIN À L’OUTIL UTILE</span>

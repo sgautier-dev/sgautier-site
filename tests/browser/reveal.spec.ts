@@ -111,10 +111,24 @@ async function assertOpacityContinuity(page: Page, name: string) {
     window.revealAudit.map(({ element, animation, ...record }) => ({
       ...record,
       label: `${element.tagName}.${element.className}`,
+      expectedDistance: element.matches(".hero-copy")
+        ? 12
+        : element.matches(
+              ".plus-grid > article, .service-card, .project-card, .portrait, .case-hero, .case-flow, .secondary-projects > article",
+            )
+          ? 28
+          : 24,
       timing: animation.effect?.getTiming(),
       keyframes:
         animation.effect instanceof KeyframeEffect
           ? animation.effect.getKeyframes()
+          : [],
+      transforms:
+        animation.effect instanceof KeyframeEffect
+          ? animation.effect.getKeyframes().map((frame) => {
+              const matrix = new DOMMatrixReadOnly(String(frame.transform));
+              return { y: matrix.m42, scaleX: matrix.a, scaleY: matrix.d };
+            })
           : [],
     })),
   );
@@ -122,6 +136,10 @@ async function assertOpacityContinuity(page: Page, name: string) {
   for (const record of records) {
     expect(record.beforeOpacity, record.label).toBe("1");
     expect(record.immediateOpacity, record.label).toBe("1");
+    expect(record.transforms, record.label).toEqual([
+      { y: record.expectedDistance, scaleX: 1, scaleY: 1 },
+      { y: 0, scaleX: 1, scaleY: 1 },
+    ]);
     expect(
       record.keyframes.every((frame) => frame.opacity === undefined),
       record.label,
@@ -164,10 +182,10 @@ test("reveals are finite, staggered, released to CSS and never replay on scrolli
       .filter(({ element }) => element.matches(".plus-grid > article"))
       .map(({ animation }) => animation.effect?.getTiming()),
   );
-  expect(timings.map((timing) => timing?.delay)).toEqual([0, 140, 280, 420]);
+  expect(timings.map((timing) => timing?.delay)).toEqual([0, 120, 240, 360]);
   for (const timing of timings)
     expect(timing).toMatchObject({
-      duration: 750,
+      duration: 650,
       iterations: 1,
       easing: "cubic-bezier(0.22, 1, 0.36, 1)",
     });
@@ -188,16 +206,16 @@ test("reveals are finite, staggered, released to CSS and never replay on scrolli
       }),
   );
   for (const [index, record] of pacing.entries()) {
-    expect(record.elapsed).toBeGreaterThanOrEqual(725 + record.delay);
-    expect(record.elapsed).toBeLessThan(900 + record.delay);
+    expect(record.elapsed).toBeGreaterThanOrEqual(625 + record.delay);
+    expect(record.elapsed).toBeLessThan(800 + record.delay);
     expect(record.middle?.opacity).toBe("1");
     expect(record.middle?.y).toBeGreaterThan(0);
-    expect(record.middle?.y).toBeLessThan(16);
+    expect(record.middle?.y).toBeLessThan(28);
     if (index > 0) {
       const stagger =
         Number(record.startedAt) - Number(pacing[index - 1].startedAt);
-      expect(stagger).toBeGreaterThanOrEqual(110);
-      expect(stagger).toBeLessThanOrEqual(170);
+      expect(stagger).toBeGreaterThanOrEqual(90);
+      expect(stagger).toBeLessThanOrEqual(150);
     }
   }
   await assertOpacityContinuity(page, "live-problems");
@@ -252,7 +270,7 @@ for (const width of [1440, 390]) {
           .find(({ element }) => element.matches(".hero-copy"))
           ?.animation.effect?.getTiming(),
       ),
-    ).toMatchObject({ duration: 550, delay: 0, iterations: 1 });
+    ).toMatchObject({ duration: 500, delay: 0, iterations: 1 });
     expect(
       await page.evaluate(() => {
         const effect = window.revealAudit.find(({ element }) =>
@@ -286,8 +304,8 @@ for (const width of [1440, 390]) {
       };
     });
     expect(sequence.timing).toMatchObject({
-      duration: 750,
-      delay: 140,
+      duration: 650,
+      delay: 120,
       iterations: 1,
     });
     expect(sequence.finishedAt).toEqual(expect.any(Number));

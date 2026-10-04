@@ -8,6 +8,8 @@ const scenes = [
   { name: "services", route: "/", selector: "#services" },
   { name: "projects", route: "/", selector: "#realisations" },
   { name: "method", route: "/", selector: "#methode" },
+  { name: "about", route: "/", selector: ".about-preview" },
+  { name: "contact", route: "/", selector: "#contact" },
   {
     name: "internal",
     route: "/services/integration-outils-api",
@@ -72,22 +74,31 @@ for (const width of [1440, 390]) {
         .poll(() => capture.evaluate(() => window.capturedMotion.length))
         .toBeGreaterThan(0);
       const phases = [];
-      for (const time of [0, 300, 1200]) {
+      for (const time of [0, 100, 300, 1200]) {
         const state = await capture.evaluate(async (time) => {
           for (const { animation } of window.capturedMotion)
             animation.currentTime = time;
           await new Promise(requestAnimationFrame);
-          return window.capturedMotion.map(({ element, beforeOpacity }) => ({
-            label: `${element.tagName}.${element.className}`,
-            beforeOpacity,
-            opacity: getComputedStyle(element).opacity,
-            y: new DOMMatrixReadOnly(getComputedStyle(element).transform).m42,
-          }));
+          return window.capturedMotion.map(
+            ({ element, animation, beforeOpacity }) => ({
+              label: `${element.tagName}.${element.className}`,
+              timing: animation.effect?.getTiming(),
+              beforeOpacity,
+              opacity: getComputedStyle(element).opacity,
+              y: new DOMMatrixReadOnly(getComputedStyle(element).transform).m42,
+              scaleX: new DOMMatrixReadOnly(getComputedStyle(element).transform)
+                .a,
+              scaleY: new DOMMatrixReadOnly(getComputedStyle(element).transform)
+                .d,
+            }),
+          );
         }, time);
         expect(state.length).toBeGreaterThan(0);
         for (const item of state) {
           expect(item.beforeOpacity).toBe("1");
           expect(item.opacity).toBe("1");
+          expect(item.scaleX).toBe(1);
+          expect(item.scaleY).toBe(1);
           if (time === 1200) expect(item.y).toBe(0);
         }
         phases.push({ time, state });

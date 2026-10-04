@@ -26,10 +26,10 @@ export default function Page() {
           }
         </p>
       </PageIntro>
-      <div className="case-hero project-holistis" data-reveal>
+      <div className="case-hero project-holistis" data-reveal="visual">
         <ProjectVisual name="Holistis" assetKey="holistisContent" />
       </div>
-      <div className="case-flow" data-reveal>
+      <div className="case-flow" data-reveal="visual">
         <HolistisNewsletterFlow />
       </div>
       <ArticleSection title="Le besoin éditorial">

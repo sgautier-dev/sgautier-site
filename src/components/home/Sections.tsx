@@ -29,7 +29,7 @@ export function FeaturedProjects() {
               key={project.slug}
               project={project}
               large={index === 0}
-              revealDelay={index * 140}
+              revealDelay={index * 120}
             />
           ))}
         </div>
@@ -66,7 +66,7 @@ export function MethodSection() {
                 className="method-step"
                 key={title}
                 data-reveal
-                data-reveal-delay={index * 140}
+                data-reveal-delay={index * 120}
               >
                 <span className="index">0{index + 1}</span>
                 <h3>{title}</h3>
@@ -106,7 +106,7 @@ export function DiagnosticSection() {
           <div
             className="diagnostic-details"
             data-reveal
-            data-reveal-delay="140"
+            data-reveal-delay="120"
           >
             <div>
               <h3>On regarde</h3>
@@ -147,7 +147,7 @@ export function TestimonialsSection() {
               className={`quote ${index === 0 ? "quote-lead" : ""}`}
               key={testimonial.name}
               data-reveal
-              data-reveal-delay={index * 140}
+              data-reveal-delay={index * 120}
             >
               <blockquote>
                 <p>{testimonial.quote}</p>
@@ -169,7 +169,7 @@ export function AboutPreview() {
       <Container>
         <div className="about-preview">
           <Portrait />
-          <div data-reveal data-reveal-delay="140">
+          <div data-reveal data-reveal-delay="120">
             <p className="eyebrow">Une double lecture de votre activité</p>
             <h2>Ingénieur, développeur et entrepreneur.</h2>
             {homeCopy.about.map((paragraph) => (
@@ -198,7 +198,7 @@ export function ContactSection() {
             </a>
             <p className="geography">{site.geography}</p>
           </div>
-          <div data-reveal data-reveal-delay="140">
+          <div data-reveal data-reveal-delay="120">
             <ContactForm available={getContactConfig() !== null} />
           </div>
         </div>

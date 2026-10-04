@@ -32,7 +32,7 @@ export default function ContactPage() {
           </Suspense>
           <ContactForm available={getContactConfig() !== null} />
         </div>
-        <aside className="contact-sidebar" data-reveal data-reveal-delay="140">
+        <aside className="contact-sidebar" data-reveal data-reveal-delay="120">
           <div>
             <h2>Vous préférez écrire directement ?</h2>
             <a href={`mailto:${site.email}`}>{site.email}</a>

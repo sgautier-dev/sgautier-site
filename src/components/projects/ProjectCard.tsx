@@ -14,7 +14,7 @@ export function ProjectCard({
   return (
     <article
       className={`project-card project-${project.slug} ${large ? "project-featured" : ""}`}
-      data-reveal
+      data-reveal="visual"
       data-reveal-delay={revealDelay}
     >
       <div>

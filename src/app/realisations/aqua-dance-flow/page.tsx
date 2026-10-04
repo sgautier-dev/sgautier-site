@@ -26,10 +26,10 @@ export default function Page() {
           }
         </p>
       </PageIntro>
-      <div className="case-hero project-aqua-dance-flow" data-reveal>
+      <div className="case-hero project-aqua-dance-flow" data-reveal="visual">
         <ProjectVisual name="Aqua Dance Flow" assetKey="adfEvents" />
       </div>
-      <div className="case-flow" data-reveal>
+      <div className="case-flow" data-reveal="visual">
         <AdfEventFlow />
       </div>
       <ArticleSection title="Le besoin">

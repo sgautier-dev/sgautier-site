@@ -72,7 +72,11 @@ export function ProblemsSection() {
         </div>
         <PlusGrid>
           {situations.map(([title, text], index) => (
-            <article key={title} data-reveal data-reveal-delay={index * 140}>
+            <article
+              key={title}
+              data-reveal="visual"
+              data-reveal-delay={index * 120}
+            >
               <span className="index">0{index + 1}</span>
               <div>
                 <h3>{title}</h3>
@@ -109,8 +113,8 @@ export function ServicesBento() {
             <article
               key={service.key}
               className={`service-card service-${service.key}`}
-              data-reveal
-              data-reveal-delay={index * 140}
+              data-reveal="visual"
+              data-reveal-delay={index * 120}
             >
               <div className="service-copy">
                 <p className="eyebrow">

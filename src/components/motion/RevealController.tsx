@@ -39,19 +39,21 @@ export function RevealController() {
       }
 
       const copy = element.dataset.reveal === "hero-copy";
+      const distance = copy
+        ? 12
+        : element.dataset.reveal === "visual"
+          ? 28
+          : 24;
       const delay = Math.min(
-        420,
+        360,
         Math.max(0, Number(element.dataset.revealDelay) || 0),
       );
       const animation = element.animate(
         // SSR content is already visible: never lower its opacity on entry.
-        [
-          { transform: `translateY(${copy ? 8 : 16}px)` },
-          { transform: "none" },
-        ],
+        [{ transform: `translateY(${distance}px)` }, { transform: "none" }],
         {
           id: "block-reveal",
-          duration: copy ? 550 : 750,
+          duration: copy ? 500 : 650,
           delay: copy ? 0 : delay,
           easing: "cubic-bezier(0.22, 1, 0.36, 1)",
           iterations: 1,

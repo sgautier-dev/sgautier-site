@@ -26,10 +26,10 @@ export default function Page() {
           }
         </p>
       </PageIntro>
-      <div className="case-hero project-compta-pro" data-reveal>
+      <div className="case-hero project-compta-pro" data-reveal="visual">
         <ProjectVisual name="Compta Pro" assetKey="comptaProOverview" />
       </div>
-      <div className="case-flow" data-reveal>
+      <div className="case-flow" data-reveal="visual">
         <ComptaProFlow />
       </div>
       <ArticleSection title="Le point de départ">

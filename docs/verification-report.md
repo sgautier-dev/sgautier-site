@@ -1,4 +1,52 @@
-# Verification report — smoother motion
+# Verification report — motion presence
+
+Execution date: 2026-10-04. Starting point: local `main` at `30f41cc5d660843acfe296667738eb6ac664026d`. Environment: macOS, Node 24.20.0, npm 11.19.0, Next 16.3.8, Playwright 1.63.0 and headless Chrome 157. This section supersedes the historical results below. **Local preview verified; website publication remains blocked.**
+
+## Executed checks
+
+| Command | Actual result | Evidence under `artifacts/motion-presence/` |
+| --- | --- | --- |
+| `npm run test:e2e -- tests/browser/motion-frames.spec.ts` on the unchanged production build | PASS: two tests; fresh before captures for eight scenes at two widths | `before/browser-frames.log`, `before/browser-results.json`, `before/screenshots/` |
+| `npm run check` | PASS: ESLint, strict TypeScript, 64 tests in six files | `check.log` |
+| `npm run build` | PASS: thirteen page routes remain prerendered | `build.log` |
+| `npm run test:e2e` | PASS: 51/51 in 177.1s, zero skipped, retried or flaky tests | `browser.log`, `browser-results.json` |
+| `npm run measure` | PASS: twelve new mobile Lighthouse runs, three per route | `lighthouse.log`, `lighthouse/` |
+| `git diff --check` and protected-file hash comparison | PASS; approvals, legal content and preserved generated-file change match the initial snapshot | `before/protected-files.sha256`, final `git-sync.log` |
+
+Both browser capture runs set `EVIDENCE_DIRECTORY` to the corresponding before/final screenshots directory. All provider credentials remain empty and delivery disabled for the production test server. Existing keyboard, route navigation, focus/anchor, no-JavaScript, reduced-motion, missing-observer, responsive and text-enlargement checks pass. All thirteen routes retain their reveal structure. Axe scans six representative routes at 390/1440px plus contact errors, with zero violations. No real email was sent.
+
+## Motion and visual comparison
+
+Final parameters: text/sections/forms **24px / 650ms**; existing cards/projects/portraits/case visuals **28px / 650ms**; hero copy **12px / 500ms**, without observer wait; hero diagram **24px / 650ms** with a 120ms delay. Stagger is **120ms, capped at 360ms**. Easing, +48px observer margin, one iteration and the signal's single 1.8s pass after diagram completion remain unchanged. No scale or opacity fade is used anywhere in reveals.
+
+Ten unpaused audits record **120 block instances and 5,231 sampled frames with zero opacity deviations**. Native keyframes verify the expected initial translation and unit scale. Actual Problems completion times including delay are approximately 678/794/911/1028ms; sampled start intervals are 133/116/117ms, consistent with the configured 120ms plus frame scheduling. Tests retain finite duration, intermediate translation, once-only, early viewport entry and hero sequencing assertions. See `opacity-summary.json` and `live-pacing.json`.
+
+Before and after each contain 64 controlled stills: Hero, Problems, Services, Projects, Method, About, Contact and an internal integration service, at 1440/390px and 0/100/300/1200ms. Native animations are paused and sought for these stills; separate unpaused tests establish real elapsed timing. All eight desktop scenes were visually compared at 100ms. Additional initial/intermediate/final desktop states and mobile Hero/About/Contact comparisons were inspected. The stronger start remains readable, with stable letter/control size; Problems borders settle back into the original grid. At 100ms, an undelayed section travels 13.55px instead of 8.11px, and a visual travels 15.80px instead of 8.11px. See `frame-comparison.json` and `visual-review.md`; 42 current responsive route/width captures are separately archived in `responsive/`.
+
+The in-app browser was unavailable (no backend listed); these observations use the project's existing Playwright production captures, not a claimed live in-app review. No scale experiment is claimed: translation alone was selected to preserve the size of text embedded in cards and diagrams. Source comparison confirms only existing variant/delay attributes changed outside the controller, with no content, navigation, section order, design-system, dependency or publication-policy change; see `source-scope.json`.
+
+## Lighthouse before/after
+
+The before column uses archived **V2.1.1 measurements at 30f41cc**, copied to `before/lighthouse/`; it is not a fresh baseline rerun. The after column uses twelve new measurements against the final production build. Both use Lighthouse 13.5.0 simulated mobile throttling, 412 × 823 at DPR 1.75, 4× CPU slowdown, 150ms RTT and 1,638.4 Kbps throughput. Values are medians of three runs per route.
+
+| Route | Performance before → after | LCP before → after | TBT before → after | CLS before → after | Transferred JS before → after |
+| --- | --- | --- | --- | --- | --- |
+| `/` | 95 → 95 | 2859.48 → 2862.44ms | 104 → 103ms | 0 → 0 | 153,244 → 153,259 bytes |
+| `/services/integration-outils-api` | 96 → 96 | 2708.67 → 2707.00ms | 108 → 100ms | 0 → 0 | 153,244 → 153,259 bytes |
+| `/realisations/compta-pro` | 95 → 96 | 2707.61 → 2707.91ms | 110.5 → 102ms | 0 → 0 | 159,448 → 159,463 bytes |
+| `/contact` | 96 → 96 | 2706.56 → 2707.47ms | 99 → 109ms | 0 → 0 | 158,280 → 158,295 bytes |
+
+All twelve new runs have accessibility/best practices 100 and CLS 0. Home performance remains 95, with LCP approximately 3ms higher, TBT 1ms lower and 15 extra transferred JavaScript bytes. These are small local lab variations, not field performance claims. The existing **2.5s LCP target remains unmet**. SEO remains 69 on home and 66 internally; the only failed SEO audit is `is-crawlable`, expected for the unchanged noindex preview. Raw reports and settings are archived.
+
+## Scope and remaining limits
+
+Approvals and legal-content hashes are unchanged. The pre-existing `next-env.d.ts` modification is restored and excluded from the commit. No external resource was created, no website was deployed, and no domain/provider configuration, real email or financial data was accessed or changed. One coherent commit and an ordinary push are authorized only after final origin/direct-parent checks; exact Git outcomes are recorded in ignored `git-sync.log` and the handoff.
+
+Native browser zoom, screen readers, Safari/Firefox, hosted-domain checks and real provider receipt were NOT RUN. Publication gates, the synthetic final-content test and dependency audits were not rerun in this parameter-only pass; their dated evidence remains below. Owner assets, legal/provider facts and explicit website publication approval remain outstanding. See `motion-presence.md`, `implementation-state.md` and `release-checklist.md`.
+
+---
+
+# Previous verification report — smoother motion
 
 Execution date: 2026-10-04. Starting point: local `main` at `a985433460fc0c8267a8e657ea1814cd7ce12358`. Environment: macOS, Node 24.20.0, npm 11.19.0, Next 16.3.8, Playwright 1.63.0, headless Chrome 157. This section supersedes the historical results below. **Local preview validated; website publication remains blocked.**
 

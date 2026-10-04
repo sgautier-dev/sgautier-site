@@ -17,7 +17,7 @@ export function ApprovedVisual({
     <figure
       className={className}
       data-publication-asset={assetKey}
-      data-reveal={reveal ? "" : undefined}
+      data-reveal={reveal ? "visual" : undefined}
     >
       {asset.path ? (
         <Image
