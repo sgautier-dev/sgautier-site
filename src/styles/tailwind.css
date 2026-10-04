@@ -962,6 +962,17 @@
   margin-top: 18px;
   color: #51635a;
 }
+.project-visual > img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+}
+.approved-alternative {
+  padding: 32px;
+  border-left: 2px solid var(--color-accent);
+  background: var(--color-accent-pale);
+}
 .project-visual figcaption {
   color: var(--color-muted);
   font-size: 0.75rem;

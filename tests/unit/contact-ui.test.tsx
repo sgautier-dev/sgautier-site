@@ -95,8 +95,12 @@ describe("contact interface with the real next-safe-action hook", () => {
     expect(
       await screen.findByText(contactMessages.accepted),
     ).toBeInTheDocument();
-    expect(screen.getByLabelText("Nom", { exact: true })).toHaveValue("");
-    expect(screen.getByLabelText("Parlez-moi de votre besoin")).toHaveValue("");
+    await waitFor(() => {
+      expect(screen.getByLabelText("Nom", { exact: true })).toHaveValue("");
+      expect(screen.getByLabelText("Parlez-moi de votre besoin")).toHaveValue(
+        "",
+      );
+    });
   });
   it("handles an unknown network outcome without exposing or retrying the error", async () => {
     action.mockRejectedValue(new Error("private network detail"));

@@ -81,7 +81,6 @@ it("keeps presentation, pilot and delivery status independent", () => {
     kind: "personal-pilot",
     deliveryStatus: "pilot",
     featured: true,
-    publicationApproved: false,
   });
   expect(secondaryProjects[0]).toMatchObject({
     deliveryStatus: "upcoming",

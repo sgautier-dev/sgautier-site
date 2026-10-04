@@ -48,7 +48,7 @@ export default function ProjectsPage() {
         <div className="secondary-projects">
           {secondaryProjects.map((project) => (
             <article key={project.slug}>
-              <ProjectVisual name={project.name} />
+              <ProjectVisual name={project.name} assetKey={project.assetKey} />
               <h3>{project.name}</h3>
               <p>{project.description}</p>
               <span className="project-status">{project.statusLabel}</span>

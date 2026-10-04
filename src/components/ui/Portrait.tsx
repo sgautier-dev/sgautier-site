@@ -1,6 +1,13 @@
 import Image from "next/image";
 import portrait from "@/images/portrait-sebastien.jpg";
+import { getApprovedAsset } from "@/lib/publication";
+import { ApprovedVisual } from "./ApprovedVisual";
 export function Portrait() {
+  const asset = getApprovedAsset("portrait");
+  if (asset)
+    return (
+      <ApprovedVisual assetKey="portrait" asset={asset} className="portrait" />
+    );
   return (
     <figure className="portrait">
       <Image

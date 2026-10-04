@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { mkdir } from "node:fs/promises";
+const evidence = process.env.EVIDENCE_DIRECTORY || "artifacts/refinement";
 
 test("desktop services disclosure uses ordinary links and keyboard dismissal", async ({
   page,
@@ -20,8 +21,8 @@ test("desktop services disclosure uses ordinary links and keyboard dismissal", a
   await expect(
     page.getByRole("link", { name: "Tous les services", exact: true }),
   ).toBeFocused();
-  await mkdir("artifacts/v2/batch-1", { recursive: true });
-  await page.screenshot({ path: "artifacts/v2/batch-1/desktop-submenu.png" });
+  await mkdir(evidence, { recursive: true });
+  await page.screenshot({ path: `${evidence}/desktop-submenu.png` });
   await page.keyboard.press("Escape");
   await expect(trigger).toBeFocused();
   await expect(trigger).toHaveAttribute("aria-expanded", "false");
@@ -45,8 +46,8 @@ test("mobile services remain discoverable with one contact entry", async ({
   });
   await expect(navigation.locator('a[href="/contact"]')).toHaveCount(1);
   await expect(navigation.locator('a[href^="/services/"]')).toHaveCount(3);
-  await mkdir("artifacts/v2/batch-1", { recursive: true });
-  await page.screenshot({ path: "artifacts/v2/batch-1/mobile-menu.png" });
+  await mkdir(evidence, { recursive: true });
+  await page.screenshot({ path: `${evidence}/mobile-menu.png` });
 });
 
 test("external destinations announce new tabs and footer restores general navigation", async ({

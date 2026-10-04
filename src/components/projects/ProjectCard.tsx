@@ -30,7 +30,7 @@ export function ProjectCard({
           </TextLink>
         )}
       </div>
-      <ProjectVisual name={project.name} />
+      <ProjectVisual name={project.name} assetKey={project.assetKey} />
     </article>
   );
 }

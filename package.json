@@ -16,7 +16,8 @@
     "test:e2e": "playwright test",
     "check:release": "node scripts/check-release.mjs",
     "measure": "node scripts/measure.mjs",
-    "assets:og": "node scripts/create-og.mjs"
+    "assets:og": "node scripts/create-og.mjs",
+    "test:public-mode": "node scripts/test-public-mode.mjs"
   },
   "dependencies": {
     "@arcjet/next": "1.14.0",

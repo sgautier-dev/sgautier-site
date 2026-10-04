@@ -27,7 +27,7 @@ export default function Page() {
         </p>
       </PageIntro>
       <div className="case-hero project-holistis">
-        <ProjectVisual name="Holistis" />
+        <ProjectVisual name="Holistis" assetKey="holistisContent" />
       </div>
       <div className="case-flow">
         <HolistisNewsletterFlow />

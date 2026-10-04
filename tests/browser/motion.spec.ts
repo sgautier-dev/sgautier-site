@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { mkdir } from "node:fs/promises";
+const evidence = process.env.EVIDENCE_DIRECTORY || "artifacts/refinement";
 
 test("hero signal is finite and leaves all content visible", async ({
   page,
@@ -24,8 +25,8 @@ test("hero signal is finite and leaves all content visible", async ({
     .toBe(true);
   await expect(page.locator(".flow-center strong")).toBeVisible();
   await expect(path).toHaveCSS("opacity", "0");
-  await mkdir("artifacts/v2/batch-2", { recursive: true });
-  await page.screenshot({ path: "artifacts/v2/batch-2/hero-normal-final.png" });
+  await mkdir(evidence, { recursive: true });
+  await page.screenshot({ path: `${evidence}/hero-normal-final.png` });
   await page.locator(".hero-actions .button").focus();
   await expect
     .poll(() =>
@@ -74,7 +75,7 @@ test("automation branches place human approval before action", async ({
   ).toHaveText(["Validation humaine", "Action"]);
   await page
     .locator(".automation-diagram")
-    .screenshot({ path: "artifacts/v2/batch-2/automation-branches.png" });
+    .screenshot({ path: `${evidence}/automation-branches.png` });
   await page.goto("/realisations/aqua-dance-flow");
   await expect(page.locator(".dual-flow figure")).toHaveCount(2);
   await expect(page.locator(".dual-flow figure").first()).toContainText(

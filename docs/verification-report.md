@@ -1,4 +1,48 @@
-# Verification report
+# Verification report — V2
+
+Execution date: 2026-10-04. Environment: macOS, Node 24.20.0, npm 11.19.0, Next 16.3.8 and installed headless Google Chrome. This section supersedes the initial implementation results retained below. **Local preview validated; publication blocked.**
+
+## Final executed verification
+
+| Command | Actual result | Evidence under `artifacts/v2/batch-5/` |
+| --- | --- | --- |
+| `npm ci` | PASS, exit 0; 587 packages installed from the unchanged lockfile | `npm-ci.log` |
+| `npm run check` | PASS: lint, strict types, 64 tests in six files | `check.log` |
+| `npm run build` | PASS; all 13 page routes prerendered | `build.log` |
+| `npm run test:e2e` | PASS: 36/36, no retries or skipped tests | `browser.log` |
+| `npm run test:public-mode` | PASS: 13 actual Next routes, 16 loaded image instances, no external browser requests, contact disabled, real ledger unchanged | `public-mode.log`, `public-mode/summary.json`, `public-mode/rendered-gate.log` |
+| `npm run measure` | PASS: all twelve Lighthouse runs completed | `lighthouse.log`, `lighthouse/summary.json` |
+| `npm run check:release` | Expected rejection, exit 1; 93 rendered/preflight findings on the real preview | `release-check.log` |
+| `SITE_RELEASE=approved npm run build` | Expected rejection before compilation; 47 preflight conditions | `public-build-gate.log` |
+
+The real approvals remain false. The 93 findings include repeated missing-media and preview-policy findings across routes; they are not 93 separate owner tasks. The synthetic final-content test does not approve any real asset, legal statement, provider configuration or publication.
+
+The enlarged-text test verifies actual doubled font sizes, unclipped text ranges, retained form values, focused errors and usable mobile navigation. Both no-JavaScript disclosures, ordinary desktop navigation, external-link announcements, anchor lower/upper bounds, normal finite motion, reduced motion, exact revised copy and project restrictions are covered. Responsive coverage remains 320, 375, 390, 430, 768, 1024 and 1440px. Axe scans the six representative routes at 390 and 1440px plus contact errors; no violations were reported in the executed scans.
+
+During V2 verification, tests caught narrow-layout overflow, contact-anchor hydration drift and an over-broad draft phrase matcher; all were corrected and rerun. The asynchronous form-reset test now waits for the real success callback. A resize test was scoped to the form's error alert rather than Next's separate route announcer. No failed execution is counted as a success.
+
+## Lighthouse mobile medians (three runs each)
+
+| Route | Performance | Accessibility | Best practices | SEO | LCP | CLS | TBT |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `/` | 94 | 100 | 100 | 69 | 2.86s | 0 | 110.0ms |
+| `/services/integration-outils-api` | 96 | 100 | 100 | 66 | 2.71s | 0 | 108.0ms |
+| `/realisations/compta-pro` | 96 | 100 | 100 | 66 | 2.71s | 0 | 103.5ms |
+| `/contact` | 95 | 100 | 100 | 66 | 2.71s | 0 | 114.0ms |
+
+The only failed SEO audit in each inspected report is `is-crawlable`, expected because the real preview remains noindex. Do not remove preview protection to improve this score. Compared with the retained initial reports, transferred JavaScript is essentially unchanged (home 152,548 → 152,544 bytes); LCP is within approximately 5ms of the baseline medians. Home/contact performance medians are one point lower. These are local simulated lab results, not field measurements or proof of production performance. **The 2.5s LCP target remains unmet** and must be reviewed with final approved assets and hosting.
+
+## Captures and publication limits
+
+Final preview evidence includes `home-390.png`, `home-1440.png`, `desktop-submenu.png`, `mobile-menu.png`, `hero-normal-final.png`, `automation-branches.png`, service/case/contact captures at 390 and 1440px in `artifacts/v2/batch-5/`. All 42 responsive full-page captures remain in `artifacts/screenshots/`; a copy is preserved under `batch-5/responsive/`. Synthetic final-mode captures are separately labeled under `batch-5/public-mode/`. The final legal fixture, menus, hero and case layout were visually inspected.
+
+Native browser zoom, VoiceOver/NVDA, Safari and Firefox were NOT RUN. Actual provider behavior with credentials and inbox receipt were NOT RUN. No deployment, push, domain action, real email or financial-data access occurred. npm ci still reports five high-severity development-tool findings and deprecated ESLint; dependency/runtime review remains a release gate. The initial production-only audit below is historical, not a new V2 audit.
+
+See `refinement-v2.md` for commits and decisions, and `release-checklist.md` for required approvals and release steps. A runnable local preview does not authorize publication.
+
+---
+
+# Initial implementation evidence
 
 Execution date: 2026-10-04. Scope: local production preview on macOS, Node 24.20.0, npm 11.19.0, Next 16.3.8. **Publication is blocked.** No remote resource, deployment, domain change, real email or financial-data access was performed.
 

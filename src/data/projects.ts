@@ -1,3 +1,4 @@
+import type { AssetKey } from "@/lib/publication-schema";
 import { homeCopy } from "./home-copy";
 
 export type Project = {
@@ -12,8 +13,7 @@ export type Project = {
   tags: readonly string[];
   caseStudyHref?: string;
   externalUrl?: string;
-  publicationApproved: boolean;
-  assetReady: boolean;
+  assetKey: AssetKey;
 };
 export const featuredProjects: readonly Project[] = [
   {
@@ -32,8 +32,7 @@ export const featuredProjects: readonly Project[] = [
       "Validation humaine",
     ],
     caseStudyHref: "/realisations/compta-pro",
-    publicationApproved: false,
-    assetReady: false,
+    assetKey: "comptaProOverview",
   },
   {
     slug: "aqua-dance-flow",
@@ -47,8 +46,7 @@ export const featuredProjects: readonly Project[] = [
     description: homeCopy.projects[2],
     tags: ["API", "Webhook", "Développement web"],
     caseStudyHref: "/realisations/aqua-dance-flow",
-    publicationApproved: false,
-    assetReady: false,
+    assetKey: "adfEvents",
   },
   {
     slug: "holistis",
@@ -62,8 +60,7 @@ export const featuredProjects: readonly Project[] = [
     description: homeCopy.projects[3],
     tags: ["CMS", "Automatisation éditoriale", "Validation humaine"],
     caseStudyHref: "/realisations/holistis",
-    publicationApproved: false,
-    assetReady: false,
+    assetKey: "holistisContent",
   },
 ];
 export const secondaryProjects: readonly Project[] = [
@@ -78,8 +75,7 @@ export const secondaryProjects: readonly Project[] = [
     description:
       "Refonte du site de la fondation : organisation des contenus, présentation des formations, ressources et gestion éditoriale avec Sanity.",
     tags: ["Site institutionnel", "CMS"],
-    publicationApproved: false,
-    assetReady: false,
+    assetKey: "vbmOverview",
   },
   {
     slug: "ama-massage-yoga",
@@ -92,8 +88,7 @@ export const secondaryProjects: readonly Project[] = [
     description:
       "Site professionnel pour une activité de massage et yoga, avec une identité visuelle affirmée et un parcours pensé pour la lecture sur mobile et la prise de contact.",
     tags: ["Développement web", "Parcours mobile"],
-    publicationApproved: false,
-    assetReady: false,
+    assetKey: "amaOverview",
   },
   {
     slug: "lfit",
@@ -107,8 +102,7 @@ export const secondaryProjects: readonly Project[] = [
     description:
       "Plateforme associant contenus gérés via CMS, authentification, espace membre et intégration de paiement.",
     tags: ["CMS", "Espace membre", "Paiement"],
-    publicationApproved: false,
-    assetReady: false,
+    assetKey: "lfitOverview",
   },
   {
     slug: "julie-gautier",
@@ -122,7 +116,6 @@ export const secondaryProjects: readonly Project[] = [
     description:
       "Portfolio visuel et éditorial pour présenter un travail artistique et audiovisuel, avec une gestion de contenus via CMS.",
     tags: ["Portfolio", "CMS"],
-    publicationApproved: false,
-    assetReady: false,
+    assetKey: "julieGautierOverview",
   },
 ];

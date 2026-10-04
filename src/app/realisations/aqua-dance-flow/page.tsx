@@ -27,7 +27,7 @@ export default function Page() {
         </p>
       </PageIntro>
       <div className="case-hero project-aqua-dance-flow">
-        <ProjectVisual name="Aqua Dance Flow" />
+        <ProjectVisual name="Aqua Dance Flow" assetKey="adfEvents" />
       </div>
       <div className="case-flow">
         <AdfEventFlow />

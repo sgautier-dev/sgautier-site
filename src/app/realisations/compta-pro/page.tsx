@@ -27,7 +27,7 @@ export default function Page() {
         </p>
       </PageIntro>
       <div className="case-hero project-compta-pro">
-        <ProjectVisual name="Compta Pro" />
+        <ProjectVisual name="Compta Pro" assetKey="comptaProOverview" />
       </div>
       <div className="case-flow">
         <ComptaProFlow />
@@ -67,7 +67,7 @@ export default function Page() {
             "Le registre sépare les opérations, leurs sources et les actions d’intégration pour pouvoir répéter un traitement sans créer de doublons."
           }
         </p>
-        <ProjectVisual name="Compta Pro" review />
+        <ProjectVisual name="Compta Pro" assetKey="comptaProReview" review />
       </ArticleSection>
       <ArticleSection title="Automatiser les règles, garder la décision humaine">
         <p>

@@ -1,71 +1,144 @@
 {
   "approvals": {
-    "visualAndEditorialReview": { "approved": false, "evidence": "" },
-    "legalIdentityAndNotices": { "approved": false, "evidence": "" },
-    "privacyAndRetention": { "approved": false, "evidence": "" },
-    "projectLinksAndDeliveryContext": { "approved": false, "evidence": "" },
-    "senderAndProviderConfiguration": { "approved": false, "evidence": "" },
-    "authorizedRealEmailReceipt": { "approved": false, "evidence": "" },
-    "dependencyAndRuntimeReview": { "approved": false, "evidence": "" },
-    "legacyUrlsAndSearchConsole": { "approved": false, "evidence": "" },
-    "previewAccessProtection": { "approved": false, "evidence": "" },
-    "domainCanonicalAndRollback": { "approved": false, "evidence": "" },
-    "ownerPublicationAuthorization": { "approved": false, "evidence": "" }
+    "visualAndEditorialReview": {
+      "approved": false,
+      "evidence": ""
+    },
+    "legalIdentityAndNotices": {
+      "approved": false,
+      "evidence": ""
+    },
+    "privacyAndRetention": {
+      "approved": false,
+      "evidence": ""
+    },
+    "projectLinksAndDeliveryContext": {
+      "approved": false,
+      "evidence": ""
+    },
+    "senderAndProviderConfiguration": {
+      "approved": false,
+      "evidence": ""
+    },
+    "authorizedRealEmailReceipt": {
+      "approved": false,
+      "evidence": ""
+    },
+    "dependencyAndRuntimeReview": {
+      "approved": false,
+      "evidence": ""
+    },
+    "legacyUrlsAndSearchConsole": {
+      "approved": false,
+      "evidence": ""
+    },
+    "previewAccessProtection": {
+      "approved": false,
+      "evidence": ""
+    },
+    "domainCanonicalAndRollback": {
+      "approved": false,
+      "evidence": ""
+    },
+    "ownerPublicationAuthorization": {
+      "approved": false,
+      "evidence": ""
+    },
+    "manualAccessibilityAndBrowserReview": {
+      "approved": false,
+      "evidence": ""
+    }
   },
   "assets": {
     "portrait": {
       "approved": false,
       "path": "src/images/portrait-sebastien.jpg",
       "alternative": "",
-      "evidence": ""
+      "evidence": "",
+      "alt": "Sébastien Gautier",
+      "caption": "",
+      "width": 800,
+      "height": 800
     },
     "comptaProOverview": {
       "approved": false,
       "path": "",
       "alternative": "",
-      "evidence": ""
+      "evidence": "",
+      "alt": "",
+      "caption": "",
+      "width": 0,
+      "height": 0
     },
     "comptaProReview": {
       "approved": false,
       "path": "",
       "alternative": "",
-      "evidence": ""
+      "evidence": "",
+      "alt": "",
+      "caption": "",
+      "width": 0,
+      "height": 0
     },
     "adfEvents": {
       "approved": false,
       "path": "",
       "alternative": "",
-      "evidence": ""
+      "evidence": "",
+      "alt": "",
+      "caption": "",
+      "width": 0,
+      "height": 0
     },
     "holistisContent": {
       "approved": false,
       "path": "",
       "alternative": "",
-      "evidence": ""
+      "evidence": "",
+      "alt": "",
+      "caption": "",
+      "width": 0,
+      "height": 0
     },
     "vbmOverview": {
       "approved": false,
       "path": "",
       "alternative": "",
-      "evidence": ""
+      "evidence": "",
+      "alt": "",
+      "caption": "",
+      "width": 0,
+      "height": 0
     },
     "amaOverview": {
       "approved": false,
       "path": "",
       "alternative": "",
-      "evidence": ""
+      "evidence": "",
+      "alt": "",
+      "caption": "",
+      "width": 0,
+      "height": 0
     },
     "lfitOverview": {
       "approved": false,
       "path": "",
       "alternative": "",
-      "evidence": ""
+      "evidence": "",
+      "alt": "",
+      "caption": "",
+      "width": 0,
+      "height": 0
     },
     "julieGautierOverview": {
       "approved": false,
       "path": "",
       "alternative": "",
-      "evidence": ""
+      "evidence": "",
+      "alt": "",
+      "caption": "",
+      "width": 0,
+      "height": 0
     }
   }
 }

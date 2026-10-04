@@ -12,7 +12,7 @@ export default defineConfig({
     },
   },
   test: {
-    include: ["tests/unit/**/*.test.{ts,tsx}"],
+    include: ["tests/unit/**/*.test.{ts,tsx,mjs}"],
     setupFiles: ["./tests/setup.ts"],
     clearMocks: true,
     restoreMocks: true,

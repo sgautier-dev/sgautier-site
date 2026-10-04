@@ -27,3 +27,7 @@ Licensed source archives remain outside the Git tree. The full Tailwind Plus lic
 The font binary was inspected with fontTools in a temporary environment outside the app. Its variable axes are `wght` 200–900 (default 200), `wdth` 75–125 (default 100), and `ital` 0–12 (default 0). Actual output is retained locally in `artifacts/font-axes.json`.
 
 The integrated portrait and social image were inspected with the installed image library: neither contains EXIF, IPTC or XMP metadata. The dimension/metadata-presence summary is retained locally in `artifacts/image-metadata-summary.json`; no location or personal metadata values were printed.
+
+## V2 rendering contract
+
+`release-status.json` is the single approval ledger. Every asset slot is connected to the actual page components through `AssetKey`; independent project delivery/pilot statuses remain in `src/data/projects.ts`. There are no duplicate readiness booleans to update. Image approvals require alt text and intrinsic dimensions. Approved text alternatives render as editorial text, not fabricated screenshots. Legal documents have a separate empty `legal-content.json` awaiting owner-approved copy. The disposable public-mode test uses clearly labeled synthetic SVGs and never copies its approvals back.
