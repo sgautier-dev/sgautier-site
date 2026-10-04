@@ -6,13 +6,19 @@ export function ApprovedVisual({
   assetKey,
   asset,
   className = "project-visual",
+  reveal = false,
 }: {
   assetKey: AssetKey;
   asset: ApprovedAsset;
   className?: string;
+  reveal?: boolean;
 }) {
   return (
-    <figure className={className} data-publication-asset={assetKey}>
+    <figure
+      className={className}
+      data-publication-asset={assetKey}
+      data-reveal={reveal ? "" : undefined}
+    >
       {asset.path ? (
         <Image
           src={

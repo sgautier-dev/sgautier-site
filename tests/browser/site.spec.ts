@@ -36,6 +36,12 @@ for (const [index, entry] of pageMetadata.entries()) {
     expect(response?.headers()["x-robots-tag"]).toContain("noindex");
     expect(response?.headers()["x-content-type-options"]).toBe("nosniff");
     await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.locator("[data-reveal] [data-reveal]")).toHaveCount(0);
+    await expect(
+      page.locator(
+        ".breadcrumbs[data-reveal], footer [data-reveal], input[data-reveal]",
+      ),
+    ).toHaveCount(0);
     await expect(page.locator("h1")).toHaveText(headings[index]);
     await expect(page).toHaveTitle(entry.title);
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(

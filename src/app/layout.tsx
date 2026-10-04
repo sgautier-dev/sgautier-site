@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { RevealController } from "@/components/motion/RevealController";
 import { canonicalOrigin } from "@/lib/seo";
 import { identityGraph, serializeJsonLd } from "@/lib/structured-data";
 import "@/styles/tailwind.css";
@@ -33,6 +34,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <RevealController />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(identityGraph) }}

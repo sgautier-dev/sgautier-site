@@ -57,7 +57,7 @@ export function ArticleSection({
   id?: string;
 }) {
   return (
-    <section className="article-section" id={id}>
+    <section className="article-section" id={id} data-reveal>
       <h2>{title}</h2>
       <div className="prose">{children}</div>
     </section>

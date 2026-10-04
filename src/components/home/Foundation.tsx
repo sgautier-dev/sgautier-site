@@ -19,7 +19,7 @@ export function Hero() {
   return (
     <Container>
       <section className="hero">
-        <div className="hero-copy">
+        <div className="hero-copy" data-reveal="hero-copy">
           <p className="eyebrow">
             Développement web · Intégrations · Automatisation
           </p>
@@ -62,8 +62,9 @@ export function ProblemsSection() {
   return (
     <section className="section problems">
       <Container>
-        <div className="split-heading">
+        <div className="split-heading" data-reveal>
           <SectionIntro
+            reveal={false}
             eyebrow="Le point de départ"
             title="Vos outils devraient alléger votre travail, pas le compliquer."
           />
@@ -71,7 +72,7 @@ export function ProblemsSection() {
         </div>
         <PlusGrid>
           {situations.map(([title, text], index) => (
-            <article key={title}>
+            <article key={title} data-reveal data-reveal-delay={index * 100}>
               <span className="index">0{index + 1}</span>
               <div>
                 <h3>{title}</h3>
@@ -108,6 +109,8 @@ export function ServicesBento() {
             <article
               key={service.key}
               className={`service-card service-${service.key}`}
+              data-reveal
+              data-reveal-delay={index * 100}
             >
               <div className="service-copy">
                 <p className="eyebrow">

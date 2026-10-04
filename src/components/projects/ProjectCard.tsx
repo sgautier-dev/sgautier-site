@@ -5,13 +5,17 @@ import { ProjectVisual } from "./ProjectVisual";
 export function ProjectCard({
   project,
   large = false,
+  revealDelay = 0,
 }: {
   project: Project;
   large?: boolean;
+  revealDelay?: number;
 }) {
   return (
     <article
       className={`project-card project-${project.slug} ${large ? "project-featured" : ""}`}
+      data-reveal
+      data-reveal-delay={revealDelay}
     >
       <div>
         <div className="project-name">

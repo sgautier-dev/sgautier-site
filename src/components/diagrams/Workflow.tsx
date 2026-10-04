@@ -1,6 +1,10 @@
 export function HeroWorkflowDiagram() {
   return (
-    <figure className="hero-diagram">
+    <figure
+      className="hero-diagram"
+      data-reveal="hero-diagram"
+      data-reveal-delay="100"
+    >
       <div className="diagram-topline" aria-hidden="true">
         <span>DU BESOIN À L’OUTIL UTILE</span>
         <span>SCHÉMA</span>

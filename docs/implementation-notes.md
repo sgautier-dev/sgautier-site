@@ -31,7 +31,7 @@ Portfolio2025 supplied the existing portrait candidate, testimonial text and kno
 | Radiant `bento-card` | Asymmetric service composition in `Foundation.tsx`, rendered on the server |
 | Radiant `logo-timeline` | Static workflow-layout inspiration; no copied animation or branded demo logos |
 
-The optional FadeIn, GridPattern and motion dependencies were omitted: the content and diagrams are visible in the initial HTML. Original HTML/CSS diagrams, monogram/icon and typographic social image replace generic illustrations. The local font's binary axes were inspected: `wght` 200–900, `wdth` 75–125, `ital` 0–12. CSS declares the supported weight/stretch range and a legible system fallback.
+The initial implementation omitted FadeIn, GridPattern and motion dependencies. V2.1 subsequently added a small native reveal controller, using Studio FadeIn only as behavioral inspiration; content and diagrams remain visible in the initial HTML and no motion dependency was introduced. See `refinement-v2-1-motion.md`. Original HTML/CSS diagrams, monogram/icon and typographic social image replace generic illustrations. The local font's binary axes were inspected: `wght` 200–900, `wdth` 75–125, `ital` 0–12. CSS declares the supported weight/stretch range and a legible system fallback.
 
 Files are grouped by responsibility rather than one file for every proposed component name. This reduces tiny abstractions while preserving small client islands. There is no blog, MDX pipeline, RSS feed, CMS, global dark mode, carousel, database, analytics, or donor demo content.
 

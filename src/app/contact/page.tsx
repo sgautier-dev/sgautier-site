@@ -26,13 +26,13 @@ export default function ContactPage() {
         </p>
       </PageIntro>
       <div className="contact-page">
-        <div id="formulaire">
+        <div id="formulaire" data-reveal>
           <Suspense fallback={<div className="contact-intent" />}>
             <ContactIntent />
           </Suspense>
           <ContactForm available={getContactConfig() !== null} />
         </div>
-        <aside className="contact-sidebar">
+        <aside className="contact-sidebar" data-reveal data-reveal-delay="100">
           <div>
             <h2>Vous préférez écrire directement ?</h2>
             <a href={`mailto:${site.email}`}>{site.email}</a>

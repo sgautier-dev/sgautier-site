@@ -29,6 +29,7 @@ export function FeaturedProjects() {
               key={project.slug}
               project={project}
               large={index === 0}
+              revealDelay={index * 100}
             />
           ))}
         </div>
@@ -51,8 +52,9 @@ export function MethodSection() {
     <section id="methode" className="section">
       <Container>
         <div className="dark-panel">
-          <div className="method-intro">
+          <div className="method-intro" data-reveal>
             <SectionIntro
+              reveal={false}
               eyebrow="Ma méthode"
               title="Comprendre avant d’automatiser."
             />
@@ -60,7 +62,12 @@ export function MethodSection() {
           </div>
           <div className="method-steps">
             {titles.map((title, index) => (
-              <div className="method-step" key={title}>
+              <div
+                className="method-step"
+                key={title}
+                data-reveal
+                data-reveal-delay={index * 100}
+              >
                 <span className="index">0{index + 1}</span>
                 <h3>{title}</h3>
                 <p>{homeCopy.method[index + 1]}</p>
@@ -79,8 +86,9 @@ export function DiagnosticSection() {
     <section id="diagnostic" className="section">
       <Container>
         <div className="diagnostic">
-          <div className="diagnostic-intro">
+          <div className="diagnostic-intro" data-reveal>
             <SectionIntro
+              reveal={false}
               eyebrow="Diagnostic automatisation"
               title="Par où commencer ?"
             >
@@ -95,7 +103,11 @@ export function DiagnosticSection() {
             </Button>
             <div className="principle">{homeCopy.diagnostic[2]}</div>
           </div>
-          <div className="diagnostic-details">
+          <div
+            className="diagnostic-details"
+            data-reveal
+            data-reveal-delay="100"
+          >
             <div>
               <h3>On regarde</h3>
               <p>
@@ -134,6 +146,8 @@ export function TestimonialsSection() {
             <figure
               className={`quote ${index === 0 ? "quote-lead" : ""}`}
               key={testimonial.name}
+              data-reveal
+              data-reveal-delay={index * 100}
             >
               <blockquote>
                 <p>{testimonial.quote}</p>
@@ -155,7 +169,7 @@ export function AboutPreview() {
       <Container>
         <div className="about-preview">
           <Portrait />
-          <div>
+          <div data-reveal data-reveal-delay="100">
             <p className="eyebrow">Une double lecture de votre activité</p>
             <h2>Ingénieur, développeur et entrepreneur.</h2>
             {homeCopy.about.map((paragraph) => (
@@ -173,11 +187,9 @@ export function ContactSection() {
     <section id="contact" className="section">
       <Container>
         <div className="dark-panel contact-layout">
-          <div className="contact-copy">
+          <div className="contact-copy" data-reveal>
             <p className="eyebrow">Parlons de votre besoin</p>
-            <h2>
-              Quelle tâche aimeriez-vous ne plus avoir à faire manuellement ?
-            </h2>
+            <h2>Qu’aimeriez-vous créer, connecter ou automatiser ?</h2>
             {homeCopy.contact.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
@@ -186,7 +198,9 @@ export function ContactSection() {
             </a>
             <p className="geography">{site.geography}</p>
           </div>
-          <ContactForm available={getContactConfig() !== null} />
+          <div data-reveal data-reveal-delay="100">
+            <ContactForm available={getContactConfig() !== null} />
+          </div>
         </div>
       </Container>
     </section>

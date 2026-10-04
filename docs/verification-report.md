@@ -1,4 +1,49 @@
-# Verification report — V2
+# Verification report — V2.1 motion
+
+Execution date: 2026-10-04. Starting point: `main` at `8090c60fae4142b59814dbbcbe4eddb36ea64cab`. Environment: macOS, Node 24.20.0, npm 11.19.0, Next 16.3.8, Playwright 1.63.0, headless Chrome 157. This section supersedes the historical results below. **Local preview validated; publication remains blocked.**
+
+## Executed verification
+
+| Command | Actual result | Evidence under `artifacts/v2-1/` |
+| --- | --- | --- |
+| `npm run check` | PASS: ESLint, strict TypeScript and 64 tests in six files | `check.log` |
+| `npm run build` | PASS; all thirteen page routes remain prerendered | `build.log` |
+| `EVIDENCE_DIRECTORY=artifacts/v2-1/screenshots npm run test:e2e` | PASS: 48/48, zero skipped, retried or flaky tests, 153.5s | `browser.log`, `browser-results.json` |
+| `npm run test:e2e -- tests/browser/reveal.spec.ts --grep 'hero copy stays opaque'` | PASS: 2/2 after changing only the hero screenshot crop to avoid sticky-header overlap | `browser-hero-final.log` |
+| `npm run measure` before implementation | PASS: all twelve Lighthouse runs against the V2 production preview | `before/lighthouse.log`, `before/lighthouse/` |
+| `npm run measure` after implementation | PASS: all twelve Lighthouse runs against the final production preview | `lighthouse.log`, `lighthouse/` |
+| `npm run check:release` | Expected rejection, exit 1; 93 rendered/preflight findings, unchanged from V2 | `release-check.log` |
+
+Browser tests observe real Web Animations and CSS animation events. They verify finite 500ms entrances, ordered 0/100/200/300ms delays, a single trigger after repeated scrolling, final opacity 1 / transform none and released animation effects. Home copy has transform-only keyframes for 220ms. At desktop and mobile widths the one-iteration signal starts 60–250ms after the diagram's recorded finish event, consistent with its configured 80ms delay. Reduced motion disables effects and cancels active ones. No-JavaScript content and internal navigation remain visible. Client navigation is verified without a document reload and the new page animates once. Missing observer support leaves the static site visible. Focus and deep-link targets have immediate-visibility checks.
+
+All thirteen routes are checked for nested reveal markers and unintended breadcrumb/footer/field markers. Existing keyboard navigation, credential-free contact validation/field retention, API/webhook distinction, automation branch order, redirects, metadata, project restrictions and responsive layouts pass. Axe scans six representative routes at 390 and 1440px plus contact errors, with zero violations. Seven responsive widths (320–1440px) and 200% CSS text enlargement remain covered.
+
+The first full run reported 46 passes and one anchor failure: an entrance transform moved `/a-propos#outils` beyond the established 48px header-gap limit. Direct anchor targets now skip entrances; the assertion was not relaxed. The subsequent full run passed all 48 tests, including a new direct-anchor/focus check. Failed logs and trace remain in `browser-first.log` and `first-run-failures/`; they are not counted as success.
+
+## Fresh before/after Lighthouse medians
+
+Three mobile runs per route, Lighthouse 13.5.0, simulated throttling, 412 × 823 viewport at DPR 1.75, 4× CPU slowdown, RTT 150ms and 1,638.4 Kbps throughput. Exact configuration and raw HTML/JSON reports are retained in both measurement directories. These are local lab measurements, not field Core Web Vitals.
+
+| Route | Performance before → after | LCP before → after | TBT before → after | CLS before → after | Transferred JS before → after |
+| --- | --- | --- | --- | --- | --- |
+| `/` | 95 → 95 | 2863.22 → 2860.21ms | 105 → 107ms | 0 → 0 | 152,544 → 153,263 bytes |
+| `/services/integration-outils-api` | 96 → 96 | 2707.93 → 2708.16ms | 99 → 106ms | 0 → 0 | 152,544 → 153,263 bytes |
+| `/realisations/compta-pro` | 96 → 96 | 2707.23 → 2707.53ms | 107 → 103.5ms | 0 → 0 | 158,748 → 159,467 bytes |
+| `/contact` | 96 → 96 | 2709.63 → 2707.42ms | 101 → 104ms | 0 → 0 | 157,601 → 158,299 bytes |
+
+Accessibility and best-practices medians remain 100 on all four routes. SEO remains 69 on home and 66 on the other routes; the inspected reports' only failed SEO audit is `is-crawlable`, required by preview noindex. Home JavaScript increases by **719 transferred bytes (0.47%)**; total resources increase from 328,197 to 329,575 bytes. No dependency was added. There is no meaningful measured LCP regression. The fresh baseline home score was 95, versus 94 in the historical V2 report; comparisons above use fresh measurements. The absolute 2.5s LCP target remains unmet and requires review with final assets and hosting.
+
+## Visual evidence and remaining limits
+
+`artifacts/v2-1/screenshots/` contains home at 1440/390px in normal and reduced motion; hero during/after; Problems, Services, Method, About, Contact and the combined About/contact transition; the integration service and Compta Pro case at both widths in both modes. Normal/reduced captures were visually inspected. Section crops use document coordinates to avoid sticky-header overlap. Files named `hero-*-paused-at-300ms.png` deliberately pause the actual diagram animation for a reproducible still; separate tests measure unpaused sequencing. Forty-two responsive page captures are in `responsive/`. Long full-page mobile images have section crops for readable detail.
+
+Approval and legal-content hashes remain identical to the before snapshot. Missing owner-approved media, legal facts, provider configuration/real receipt authorization, final hosting/domain and owner sign-off remain blockers. The pre-existing generated `next-env.d.ts` change is retained outside the commit. No push, remote resource, deployment, domain action, real email, financial-data access or old/client repository change occurred.
+
+Native browser zoom, screen readers, Safari/Firefox, real provider receipt and hosted-domain checks were NOT RUN. The isolated synthetic final-content test and dependency audits were not rerun in this motion-only pass; their dated V2 evidence remains below. See `refinement-v2-1-motion.md` for implementation, timing, reveal map and files; `release-checklist.md` retains the owner-controlled gates. Preview readiness does not authorize publication.
+
+---
+
+# Previous verification report — V2
 
 Execution date: 2026-10-04. Environment: macOS, Node 24.20.0, npm 11.19.0, Next 16.3.8 and installed headless Google Chrome. This section supersedes the initial implementation results retained below. **Local preview validated; publication blocked.**
 

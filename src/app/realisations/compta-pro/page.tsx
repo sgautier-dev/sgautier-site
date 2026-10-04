@@ -26,10 +26,10 @@ export default function Page() {
           }
         </p>
       </PageIntro>
-      <div className="case-hero project-compta-pro">
+      <div className="case-hero project-compta-pro" data-reveal>
         <ProjectVisual name="Compta Pro" assetKey="comptaProOverview" />
       </div>
-      <div className="case-flow">
+      <div className="case-flow" data-reveal>
         <ComptaProFlow />
       </div>
       <ArticleSection title="Le point de départ">
@@ -107,7 +107,7 @@ export default function Page() {
           }
         </p>
       </ArticleSection>
-      <div className="case-stack">
+      <div className="case-stack" data-reveal>
         <p className="eyebrow">Technologies</p>
         <TagList
           items={["Next.js", "TypeScript", "SQLite", "Traitements locaux"]}

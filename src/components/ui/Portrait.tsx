@@ -6,10 +6,15 @@ export function Portrait() {
   const asset = getApprovedAsset("portrait");
   if (asset)
     return (
-      <ApprovedVisual assetKey="portrait" asset={asset} className="portrait" />
+      <ApprovedVisual
+        assetKey="portrait"
+        asset={asset}
+        className="portrait"
+        reveal
+      />
     );
   return (
-    <figure className="portrait">
+    <figure className="portrait" data-reveal>
       <Image
         src={portrait}
         alt="Sébastien Gautier"

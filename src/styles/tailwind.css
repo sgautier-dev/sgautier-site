@@ -2050,7 +2050,10 @@
   stroke-linecap: round;
   stroke-dasharray: 3 100;
   opacity: 0;
-  animation: workflow-pass 1.8s 0.2s linear 1 both;
+}
+/* Only the decorative signal waits for enhancement; content stays visible. */
+.hero-diagram[data-workflow-active] .workflow-signal path {
+  animation: workflow-pass 1.8s 0.08s linear 1 both;
 }
 .signal-vertical {
   display: none;

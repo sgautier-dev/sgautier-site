@@ -8,12 +8,14 @@ test("hero signal is finite and leaves all content visible", async ({
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
   const path = page.locator(".signal-horizontal path");
-  expect(
-    await path.evaluate((element) => ({
-      name: getComputedStyle(element).animationName,
-      iterations: getComputedStyle(element).animationIterationCount,
-    })),
-  ).toEqual({ name: "workflow-pass", iterations: "1" });
+  await expect
+    .poll(() =>
+      path.evaluate((element) => ({
+        name: getComputedStyle(element).animationName,
+        iterations: getComputedStyle(element).animationIterationCount,
+      })),
+    )
+    .toEqual({ name: "workflow-pass", iterations: "1" });
   await expect
     .poll(() =>
       path.evaluate((element) =>

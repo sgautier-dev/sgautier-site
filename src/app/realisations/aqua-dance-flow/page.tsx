@@ -26,10 +26,10 @@ export default function Page() {
           }
         </p>
       </PageIntro>
-      <div className="case-hero project-aqua-dance-flow">
+      <div className="case-hero project-aqua-dance-flow" data-reveal>
         <ProjectVisual name="Aqua Dance Flow" assetKey="adfEvents" />
       </div>
-      <div className="case-flow">
+      <div className="case-flow" data-reveal>
         <AdfEventFlow />
       </div>
       <ArticleSection title="Le besoin">
@@ -82,7 +82,7 @@ export default function Page() {
           }
         </p>
       </ArticleSection>
-      <div className="case-stack">
+      <div className="case-stack" data-reveal>
         <p className="eyebrow">Technologies</p>
         <TagList
           items={["Next.js", "TypeScript", "API Eventbrite", "Webhooks"]}

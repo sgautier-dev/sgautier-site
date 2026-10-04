@@ -69,13 +69,15 @@ export function SectionIntro({
   eyebrow,
   title,
   children,
+  reveal = true,
 }: {
   eyebrow?: string;
   title: string;
   children?: ReactNode;
+  reveal?: boolean;
 }) {
   return (
-    <div className="section-intro">
+    <div className="section-intro" data-reveal={reveal ? "" : undefined}>
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
       <h2>{title}</h2>
       {children && <div className="lead">{children}</div>}
@@ -92,7 +94,7 @@ export function PageIntro({
   children?: ReactNode;
 }) {
   return (
-    <div className="page-intro">
+    <div className="page-intro" data-reveal>
       <p className="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       {children && <div className="lead">{children}</div>}
@@ -119,7 +121,7 @@ export function CallToAction({
   href?: string;
 }) {
   return (
-    <div className="closing-cta">
+    <div className="closing-cta" data-reveal>
       <p className="eyebrow">La suite, ensemble</p>
       <TextLink href={href}>{children}</TextLink>
     </div>

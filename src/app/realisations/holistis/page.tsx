@@ -26,10 +26,10 @@ export default function Page() {
           }
         </p>
       </PageIntro>
-      <div className="case-hero project-holistis">
+      <div className="case-hero project-holistis" data-reveal>
         <ProjectVisual name="Holistis" assetKey="holistisContent" />
       </div>
-      <div className="case-flow">
+      <div className="case-flow" data-reveal>
         <HolistisNewsletterFlow />
       </div>
       <ArticleSection title="Le besoin éditorial">
@@ -75,7 +75,7 @@ export default function Page() {
           }
         </p>
       </ArticleSection>
-      <div className="case-stack">
+      <div className="case-stack" data-reveal>
         <p className="eyebrow">Technologies</p>
         <TagList
           items={[

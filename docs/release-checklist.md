@@ -16,7 +16,7 @@ Record each approval's date and responsible reviewer in `release-status.json`. D
 | Providers | Verify Resend domain/sender and recipient; configure Resend/Arcjet keys in the correct server environment; verify SDK IP extraction for the selected proxy/hosting setup | Blocked |
 | Real email | Separately authorize a specific controlled test and recipient; run a production build with delivery enabled; verify acceptance and actual receipt, including reply-to | NOT RUN |
 | Dependencies/runtime | Recheck official security releases, npm audit and hosting Node 24 compatibility; resolve or explicitly assess remaining development-tool advisories and ESLint peer constraints | Pending |
-| Mobile performance | Recheck with final assets/hosting; simulated LCP remains 2.71–2.86s against a 2.5s target, with home performance median 94 | Needs review |
+| Mobile performance | Recheck with final assets/hosting; V2.1 simulated LCP remains 2.71–2.86s against a 2.5s target, with home performance median 95; see `verification-report.md` | Needs review |
 | Manual accessibility | Check native 200% browser zoom, VoiceOver/NVDA and Safari/Firefox on the final content; automated Chromium/axe and text-enlargement checks are recorded separately | NOT RUN |
 | Legacy URLs | Review Search Console/backlink and old CV information; preserve supplied verification files; confirm removed URLs or explicitly accept the missing-data limitation | Blocked by missing inventory |
 | Preview protection | If a hosted preview is separately authorized, apply provider access protection before uploading draft/rights-pending material; retain noindex | Not configured; no deployment performed by this refinement pass |
