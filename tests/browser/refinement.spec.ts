@@ -117,3 +117,53 @@ test("desktop disclosure works without JavaScript", async ({ browser }) => {
   await expect(page).toHaveURL(/\/services$/);
   await context.close();
 });
+
+test("refined editorial copy preserves project boundaries", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(
+    page.getByRole("heading", {
+      name: "Vos outils devraient alléger votre travail, pas le compliquer.",
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByText(
+      "Tout ce qui peut être automatisé ne mérite pas forcément de l’être.",
+      { exact: true },
+    ),
+  ).toHaveCount(1);
+  await page.goto("/realisations/compta-pro");
+  await expect(page.locator("h1")).toHaveText(
+    "Simplifier la gestion financière sans perdre le contrôle.",
+  );
+  await expect(
+    page.getByText(/Projet personnel · Cas pilote · Application métier/),
+  ).toBeVisible();
+  await expect(
+    page.getByText(/Cette mise en place reste à venir/),
+  ).toBeVisible();
+  await expect(
+    page.getByText(/Visual Budget, utilisée en lecture seule/),
+  ).toBeVisible();
+  await expect(
+    page.getByText(
+      /commande client présentée artificiellement|gain de temps chiffré/,
+    ),
+  ).toHaveCount(0);
+  await page.goto("/realisations/aqua-dance-flow");
+  await expect(
+    page.getByText(/non de la promesse d’une synchronisation instantanée/),
+  ).toBeVisible();
+  await expect(page.getByText(/événements personnalisés/)).toBeVisible();
+  await page.goto("/realisations/holistis");
+  await expect(
+    page.getByText(/L’intégration livrée pour Holistis/),
+  ).toBeVisible();
+  await expect(
+    page.getByText(/aucun envoi automatique aux abonnés n’est déclenché/),
+  ).toBeVisible();
+  await expect(
+    page.getByText(/doivent être vérifiées séparément|gain de temps chiffré/),
+  ).toHaveCount(0);
+});

@@ -12,7 +12,7 @@ const headings = [
   "Faites travailler vos outils ensemble.",
   "Automatisez ce qui vous éloigne de votre métier.",
   "Des solutions construites pour des problèmes réels.",
-  "Automatiser les traitements fiables sans automatiser les décisions sensibles.",
+  "Simplifier la gestion financière sans perdre le contrôle.",
   "Connecter la gestion des événements au site sans maintenir deux fois les mêmes données.",
   "Automatiser la préparation d’une campagne sans automatiser la décision d’envoi.",
   "Ingénieur, développeur et entrepreneur.",

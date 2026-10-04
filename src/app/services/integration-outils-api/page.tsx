@@ -21,7 +21,7 @@ export default function Page() {
       >
         <p>
           {
-            "Vous utilisez peut-être déjà les bons services. Le problème est simplement qu’ils ne se transmettent pas les bonnes informations. Une intégration bien conçue peut supprimer de nombreuses ressaisies sans remplacer tout votre système."
+            "Vos outils répondent peut-être déjà au besoin, mais leurs informations circulent mal. Une intégration peut supprimer les ressaisies sans remplacer tout votre système."
           }
         </p>
       </PageIntro>
@@ -55,7 +55,7 @@ export default function Page() {
         </p>
         <p>
           {
-            "Une API permet à deux logiciels d’échanger des données. Un webhook permet à un service de signaler un événement à un autre. Selon les possibilités disponibles, une intégration peut aussi s’appuyer sur des exports, des imports ou des traitements programmés."
+            "Une API échange des données ; un webhook signale un événement. Les exports, imports et traitements programmés offrent d’autres possibilités selon vos outils."
           }
         </p>
         <IntegrationDiagram />
@@ -63,14 +63,14 @@ export default function Page() {
       <ArticleSection title="Ne pas remplacer un outil qui fonctionne.">
         <p>
           {
-            "Avant de proposer une nouvelle plateforme, je regarde si les outils existants peuvent être mieux reliés. Nous comparons la complexité, les coûts récurrents, les limites des services et la maintenance nécessaire avant de choisir une solution."
+            "Nous comparons les possibilités des outils existants, leur complexité, leurs coûts récurrents et leur maintenance avant de choisir une solution."
           }
         </p>
       </ArticleSection>
       <ArticleSection title="Une intégration doit aussi savoir gérer les erreurs.">
         <p>
           {
-            "Une donnée invalide, un service indisponible ou un événement reçu deux fois ne doivent pas créer un problème silencieux. Je prévois les validations, la gestion des erreurs, les protections contre les doublons lorsque nécessaire et les points où une intervention humaine doit reprendre la main."
+            "Donnée invalide, service indisponible, événement reçu deux fois : je prévois les contrôles, les protections contre les doublons et les points de reprise humaine."
           }
         </p>
       </ArticleSection>

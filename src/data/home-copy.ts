@@ -14,7 +14,7 @@ export const homeCopy = {
   ],
   projects: [
     "Un outil utile ne se résume pas à son interface. Il doit s’intégrer au fonctionnement réel de l’activité, faire circuler les bonnes informations et réduire les manipulations inutiles.",
-    "Compta Pro est un outil local conçu pour centraliser, contrôler et fiabiliser plusieurs traitements liés à la gestion financière d’une activité indépendante. Les opérations déterministes peuvent être automatisées ; les décisions qui nécessitent du contexte restent sous contrôle humain.",
+    "Développé initialement pour ma propre activité, Compta Pro centralise les imports et les contrôles dans un outil local. Les situations ambiguës restent soumises à une validation explicite.",
     "Le site récupère les événements depuis Eventbrite via son API et dispose d’un webhook pour déclencher la revalidation de la page événements lorsque les données évoluent.",
     "À partir d’un contenu Sanity, un webhook peut générer automatiquement un brouillon de campagne Mailchimp. Le système prépare ; l’humain garde la décision d’envoi.",
   ],

@@ -22,7 +22,7 @@ export default function Page() {
       >
         <p>
           {
-            "Holistis utilise Sanity pour gérer ses contenus. À partir des informations d’un article, un webhook peut préparer un brouillon de campagne Mailchimp. Le système prend en charge la préparation répétitive, tandis que la relecture et la décision d’envoi restent humaines."
+            "L’intégration livrée pour Holistis relie les contenus Sanity à la préparation d’un brouillon Mailchimp. Un webhook transmet les informations de l’article ; la relecture et la décision d’envoi restent humaines."
           }
         </p>
       </PageIntro>
@@ -35,48 +35,43 @@ export default function Page() {
       <ArticleSection title="Le besoin éditorial">
         <p>
           {
-            "Préparer un contenu pour le site puis le reprendre dans une newsletter peut demander de recopier le titre, les images, le texte et le lien. Le besoin est de réutiliser les informations déjà disponibles sans obliger à reconstruire la campagne à chaque publication."
+            "Reprendre un article dans une newsletter demande de recopier son titre, ses images, son texte et son lien. Le besoin : réutiliser ces informations pour préparer la campagne."
           }
         </p>
         <p>
           {
-            "Mon intervention a porté sur la connexion entre la gestion de contenu et l’outil d’emailing, ainsi que sur la transformation du contenu dans un format adapté à la campagne."
+            "Mon intervention porte sur la connexion entre les deux outils et sur l’adaptation du contenu au format de la campagne."
           }
         </p>
       </ArticleSection>
       <ArticleSection title="Transformer un contenu en brouillon">
         <p>
           {
-            "La route d’intégration reçoit les éléments utiles depuis Sanity. Le texte riche est converti en HTML, puis combiné au titre, aux images et au lien vers l’article pour construire le contenu de la campagne."
+            "L’intégration reçoit les éléments depuis Sanity, convertit le texte riche en HTML et le combine au titre, aux images et au lien de l’article."
           }
         </p>
         <p>
           {
-            "Le traitement utilise ensuite l’API Mailchimp pour créer une campagne et y placer ce contenu. Le résultat est un brouillon préparé dans l’outil d’emailing, pas un message envoyé automatiquement aux abonnés."
+            "L’API Mailchimp permet ensuite de créer la campagne et d’y placer ce contenu. Le résultat est un brouillon ; aucun envoi automatique aux abonnés n’est déclenché."
           }
         </p>
       </ArticleSection>
       <ArticleSection title="Conserver un point de contrôle">
         <p>
           {
-            "La distinction entre préparer et envoyer est centrale. Le contenu peut être relu, adapté ou complété avant la diffusion. L’automatisation retire une partie du travail répétitif sans supprimer la décision éditoriale finale."
+            "Le brouillon peut être relu, adapté ou complété avant diffusion. La préparation répétitive est prise en charge ; la décision éditoriale reste humaine."
           }
         </p>
         <p>
           {
-            "Ce modèle est aussi une façon de définir une limite utile à l’automatisation : le système prépare les éléments ; la personne responsable choisit quand et comment les publier."
+            "La personne responsable conserve ainsi le choix du contenu final et du moment de l’envoi."
           }
         </p>
       </ArticleSection>
       <ArticleSection title="Ce que ce projet démontre">
         <p>
           {
-            "Ce cas relie un CMS à un service tiers, transforme des données éditoriales et prépare une action dans un autre outil. Il montre qu’une automatisation peut être utile sans exécuter tout le processus de bout en bout."
-          }
-        </p>
-        <p>
-          {
-            "La fonctionnalité présentée est la génération du brouillon. L’activation des déclencheurs et leur configuration en production doivent être vérifiées séparément ; aucun volume de campagnes ni gain de temps chiffré n’est revendiqué ici."
+            "Ce cas associe un CMS, une transformation de contenu et un service d’emailing. L’automatisation se termine à un point de contrôle utile : le brouillon prêt à relire."
           }
         </p>
       </ArticleSection>

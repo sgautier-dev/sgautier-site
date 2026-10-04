@@ -54,12 +54,12 @@ export default function Page() {
       <ArticleSection title="Ce que je peux construire">
         <p>
           {
-            "Applications métier, interfaces internes, espaces clients ou membres, sites professionnels, formulaires avancés et tableaux de bord : la forme dépend de l’usage. Le projet peut inclure un CMS, des paiements, une authentification ou des connexions à vos services existants."
+            "La forme dépend de l’usage : application métier, interface interne, espace client, site, formulaire ou tableau de bord. CMS, paiements, authentification et connexions peuvent compléter le projet."
           }
         </p>
         <p>
           {
-            "Je peux également reprendre ou faire évoluer un outil déjà en place, après examen de son fonctionnement et de ses contraintes. Un audit ciblé permet alors de distinguer ce qui peut être conservé de ce qui mérite d’être corrigé."
+            "Pour faire évoluer un outil existant, un examen ciblé permet d’identifier ce qui peut être conservé et ce qui mérite d’être corrigé."
           }
         </p>
         <BuildDiagram />
@@ -67,7 +67,7 @@ export default function Page() {
       <ArticleSection title="Construire seulement ce qui est nécessaire.">
         <p>
           {
-            "Je commence par comprendre le besoin et les contraintes avant de décider de l’architecture. L’objectif n’est pas de produire la solution la plus complexe, mais celle qui reste simple à utiliser, fiable et proportionnée au problème."
+            "Le besoin et les contraintes guident l’architecture : une solution simple à utiliser, fiable et proportionnée au problème."
           }
         </p>
         <p>
@@ -95,7 +95,7 @@ export default function Page() {
       <ArticleSection title="Des technologies choisies pour le besoin">
         <p>
           {
-            "Je travaille principalement avec Next.js, TypeScript et l’écosystème web moderne, mais la technologie reste un moyen. Le choix dépend du niveau d’interactivité, des données, des intégrations, de la sécurité et des contraintes de maintenance."
+            "Je travaille principalement avec Next.js et TypeScript. Les choix techniques dépendent de l’interactivité, des données, des intégrations, de la sécurité et de la maintenance."
           }
         </p>
       </ArticleSection>

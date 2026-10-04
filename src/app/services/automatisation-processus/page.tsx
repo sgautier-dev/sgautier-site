@@ -42,7 +42,7 @@ export default function Page() {
       <ArticleSection title="Ce qu’une automatisation peut prendre en charge">
         <p>
           {
-            "Les étapes qui suivent des règles claires sont de bonnes candidates : collecter, vérifier, transformer, transmettre, générer un document ou déclencher une action. Le processus doit aussi prévoir les données manquantes, les erreurs et les exceptions."
+            "Collecter, vérifier, transformer, transmettre ou générer un document : ces étapes peuvent suivre des règles claires. Il faut aussi prévoir les données manquantes et les exceptions."
           }
         </p>
         <p>
@@ -55,7 +55,7 @@ export default function Page() {
       <ArticleSection title="Ce qu’elle ne doit pas décider seule">
         <p>
           {
-            "Certaines situations demandent du contexte, une responsabilité humaine ou une appréciation qui ne peut pas être réduite à une règle fiable. Dans ces cas, l’automatisation prépare l’information et demande une validation avant de poursuivre."
+            "Quand une décision demande du contexte ou engage une responsabilité humaine, le système prépare l’information et attend une validation."
           }
         </p>
         <p>
@@ -67,7 +67,7 @@ export default function Page() {
       <ArticleSection title="L’IA est une brique, pas la stratégie.">
         <p>
           {
-            "Elle peut être utile pour résumer, extraire, classer ou préparer un brouillon lorsque les informations sont moins structurées. Je l’utilise uniquement lorsqu’elle apporte un avantage réel, avec un niveau de contrôle adapté au risque d’erreur et aux données concernées."
+            "L’IA peut résumer, extraire, classer ou préparer un brouillon à partir d’informations peu structurées. Son usage doit apporter un avantage réel, avec des contrôles adaptés aux données et au risque d’erreur."
           }
         </p>
         <p>
@@ -79,7 +79,7 @@ export default function Page() {
       <ArticleSection title="Comprendre. Simplifier. Construire. Fiabiliser.">
         <p>
           {
-            "Avant d’automatiser, je cherche d’abord à simplifier le processus. Ensuite seulement viennent les outils, les workflows, le code et éventuellement l’IA. La documentation et les possibilités de reprise font partie de la solution."
+            "Nous simplifions d’abord le processus, puis choisissons les outils. La documentation, les contrôles d’erreur et les possibilités de reprise font partie de la livraison."
           }
         </p>
       </ArticleSection>
@@ -105,13 +105,10 @@ export default function Page() {
       <ArticleSection title="Vous ne savez pas quoi automatiser en premier ?">
         <p>
           {
-            "Commencez par une tâche que vous aimeriez ne plus avoir à répéter chaque semaine. Nous regarderons ensemble si elle mérite réellement d’être automatisée et jusqu’où. Le périmètre et les conditions du diagnostic sont définis avant de commencer."
+            "Partons d’une tâche que vous répétez chaque semaine pour définir ce qui peut être amélioré. Le périmètre et les conditions du diagnostic sont convenus avant de commencer."
           }
         </p>
       </ArticleSection>
-      <p className="principle">
-        Tout ce qui peut être automatisé ne mérite pas forcément de l’être.
-      </p>
       <CallToAction href="/contact?intent=diagnostic#formulaire">
         Analyser mon processus
       </CallToAction>

@@ -65,7 +65,7 @@ export function ProblemsSection() {
         <div className="split-heading">
           <SectionIntro
             eyebrow="Le point de départ"
-            title="Vos outils devraient vous faire gagner du temps, pas en ajouter."
+            title="Vos outils devraient alléger votre travail, pas le compliquer."
           />
           <p className="lead">{homeCopy.problems[0]}</p>
         </div>

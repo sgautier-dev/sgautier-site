@@ -28,7 +28,12 @@ Terracotta `#A9523B` and pale `#F3E5DE` replace amber for human validation and s
 
 Validation: check (51 unit tests), production build and all 34 browser tests passed. Axe checks include the changed light/dark sections. Calculated text contrasts: contact 5.31:1, hover 7.05:1, human validation 5.49:1. The hero capture was inspected. Evidence: `artifacts/v2/batch-3/`.
 
-4. Concise service and case-study copy preserving scope and status.
+## Batch 4 — Editorial refinement
+
+Updated the Problems heading and adopted the requested Compta Pro title and teaser verbatim. Shortened service and case-study paragraphs, removed internal audit rhetoric, and reserved the diagnostic maxim for the home diagnostic section. Existing section structure, testimonials and project restrictions remain. Compta Pro remains a personal local pilot with a future second-user adaptation; ADF separates API reading from webhook revalidation; Holistis describes the delivered draft-generation integration without claiming current activation.
+
+Validation: check (51 unit tests), production build and all 35 browser tests passed. New browser assertions cover revised copy and retained boundaries. The Compta Pro desktop case capture was inspected. Evidence: `artifacts/v2/batch-4/`.
+
 5. Approved-asset rendering, rendered release checks, isolated public-mode regression and stronger text-resize verification.
 
 Publication remains blocked by owner-approved assets, legal facts, provider configuration and required manual release checks. Preview readiness is not publication authorization.

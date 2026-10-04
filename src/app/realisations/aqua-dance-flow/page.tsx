@@ -22,7 +22,7 @@ export default function Page() {
       >
         <p>
           {
-            "Aqua Dance Flow a besoin de présenter ses événements dans une interface cohérente tout en s’appuyant sur des informations gérées dans un service externe. L’intégration relie Eventbrite au site et prévoit un déclenchement de revalidation lorsque la source évolue."
+            "L’intégration relie les événements gérés dans Eventbrite à leur présentation sur le site Aqua Dance Flow. Un webhook distinct permet de déclencher l’actualisation de la page événements."
           }
         </p>
       </PageIntro>
@@ -35,31 +35,31 @@ export default function Page() {
       <ArticleSection title="Le besoin">
         <p>
           {
-            "Les visiteurs doivent retrouver les informations utiles sur les événements : intitulé, dates, lieu, visuel et lien d’inscription. Lorsque ces informations existent déjà dans une plateforme dédiée, les recopier ailleurs crée une deuxième version à maintenir."
+            "Les visiteurs doivent retrouver l’intitulé, les dates, le lieu, le visuel et le lien d’inscription. Recopier ces informations depuis une plateforme dédiée crée une deuxième version à maintenir."
           }
         </p>
         <p>
           {
-            "Mon intervention a consisté à relier cette source au site et à adapter ses données à la présentation attendue, plutôt que de demander au visiteur de naviguer entre des formats disparates."
+            "Mon intervention relie cette source au site et adapte les données à une présentation cohérente pour le visiteur."
           }
         </p>
       </ArticleSection>
       <ArticleSection title="Récupérer et présenter les bonnes informations">
         <p>
           {
-            "Le site interroge l’API Eventbrite pour récupérer les événements d’une organisation. Les informations reçues sont transformées en un format utilisé par l’interface : noms, dates, images, localisation, lien et disponibilité lorsque celle-ci est fournie."
+            "Le site lit les événements d’une organisation via l’API Eventbrite et adapte les noms, dates, images, lieux, liens et disponibilités fournies au format de son interface."
           }
         </p>
         <p>
           {
-            "L’intégration prévoit également des valeurs de remplacement pour certains champs absents et traite les réponses qui ne correspondent pas au format attendu. Ces choix font partie du travail invisible derrière les cartes d’événements."
+            "Des valeurs de remplacement couvrent certains champs absents. Les réponses au format inattendu sont prises en compte dans le traitement."
           }
         </p>
       </ArticleSection>
       <ArticleSection title="Déclencher une actualisation">
         <p>
           {
-            "Le projet comporte une route de webhook destinée à déclencher la revalidation de la page événements. Le principe est de signaler qu’une source a changé afin que la présentation du site puisse être actualisée."
+            "Une route de webhook déclenche séparément la revalidation de la page événements lorsqu’un changement lui est signalé."
           }
         </p>
         <p>
@@ -71,19 +71,14 @@ export default function Page() {
       <ArticleSection title="Garder un fonctionnement adapté au projet">
         <p>
           {
-            "Le code prévoit également des événements personnalisés. L’objectif n’est donc pas de forcer toutes les informations dans un seul outil, mais de permettre au site de présenter les données utiles selon les sources réellement employées."
+            "Le site prévoit aussi des événements personnalisés. Il peut ainsi présenter les informations utiles selon les sources réellement employées, sans tout imposer à Eventbrite."
           }
         </p>
       </ArticleSection>
       <ArticleSection title="Ce que l’intégration démontre">
         <p>
           {
-            "Ce projet montre comment une interface publique peut exploiter une API externe, transformer les données reçues et disposer d’un mécanisme d’actualisation. Il ne se limite pas à l’apparence du site : une partie essentielle de la solution organise la circulation des informations."
-          }
-        </p>
-        <p>
-          {
-            "Aucun chiffre de gain de temps ou de performance n’est avancé ici sans mesure dédiée."
+            "Ce projet associe lecture d’une API, adaptation des données et actualisation de l’interface : les informations gérées ailleurs trouvent leur place dans le site."
           }
         </p>
       </ArticleSection>

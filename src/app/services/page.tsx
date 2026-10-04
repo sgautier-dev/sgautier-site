@@ -17,14 +17,14 @@ export default function Page() {
       >
         <p>
           {
-            "Le bon point de départ n’est pas une technologie, mais ce qui vous fait perdre du temps aujourd’hui. Selon le besoin, la meilleure réponse peut être de créer un outil, de connecter ceux que vous utilisez déjà ou d’automatiser quelques étapes."
+            "Partons de ce qui vous fait perdre du temps. Selon le besoin, la réponse peut être de créer un outil, de connecter l’existant ou d’automatiser quelques étapes."
           }
         </p>
       </PageIntro>
       <ArticleSection title="Concevoir le bon outil.">
         <p>
           {
-            "Lorsque votre activité a besoin d’une interface ou d’une fonctionnalité qui n’existe pas sous la bonne forme, je développe une solution adaptée à votre façon de travailler. Cela peut être une application métier, un espace client, un formulaire avancé ou un site professionnel avec des fonctionnalités spécifiques."
+            "Application métier, espace client, formulaire avancé ou site professionnel : je développe les interfaces et fonctionnalités adaptées à votre activité."
           }
         </p>
         <p>
@@ -45,7 +45,7 @@ export default function Page() {
       <ArticleSection title="Faire travailler vos outils ensemble.">
         <p>
           {
-            "Certaines tâches manuelles existent simplement parce que deux services ne communiquent pas. Je crée les connexions nécessaires pour faire circuler les bonnes informations au bon moment : entre un site et un CRM, un paiement et un accès, un CMS et un outil d’emailing, ou plusieurs sources de données."
+            "Je relie les services qui doivent échanger des informations : site et CRM, paiement et accès, CMS et emailing, ou plusieurs sources de données. Ces connexions évitent les ressaisies entre outils."
           }
         </p>
         <p>
@@ -66,7 +66,7 @@ export default function Page() {
       <ArticleSection title="Retirer les tâches répétitives du chemin.">
         <p>
           {
-            "Lorsqu’une tâche suit des règles suffisamment claires, elle peut souvent être préparée ou exécutée automatiquement. Je construis des workflows pour les documents, relances, notifications, classements, rapports ou transmissions de données."
+            "Documents, relances, notifications, classements, rapports : les étapes régies par des règles claires peuvent être préparées ou exécutées automatiquement."
           }
         </p>
         <p>

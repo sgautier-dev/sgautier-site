@@ -23,8 +23,7 @@ export const featuredProjects: readonly Project[] = [
     deliveryStatus: "pilot",
     statusLabel: "Projet personnel · Cas pilote",
     featured: true,
-    title:
-      "Automatiser les traitements fiables sans automatiser les décisions sensibles.",
+    title: "Simplifier la gestion financière sans perdre le contrôle.",
     description: homeCopy.projects[1],
     tags: [
       "Application métier",
