@@ -1,0 +1,71 @@
+{
+  "approvals": {
+    "visualAndEditorialReview": { "approved": false, "evidence": "" },
+    "legalIdentityAndNotices": { "approved": false, "evidence": "" },
+    "privacyAndRetention": { "approved": false, "evidence": "" },
+    "projectLinksAndDeliveryContext": { "approved": false, "evidence": "" },
+    "senderAndProviderConfiguration": { "approved": false, "evidence": "" },
+    "authorizedRealEmailReceipt": { "approved": false, "evidence": "" },
+    "dependencyAndRuntimeReview": { "approved": false, "evidence": "" },
+    "legacyUrlsAndSearchConsole": { "approved": false, "evidence": "" },
+    "previewAccessProtection": { "approved": false, "evidence": "" },
+    "domainCanonicalAndRollback": { "approved": false, "evidence": "" },
+    "ownerPublicationAuthorization": { "approved": false, "evidence": "" }
+  },
+  "assets": {
+    "portrait": {
+      "approved": false,
+      "path": "src/images/portrait-sebastien.jpg",
+      "alternative": "",
+      "evidence": ""
+    },
+    "comptaProOverview": {
+      "approved": false,
+      "path": "",
+      "alternative": "",
+      "evidence": ""
+    },
+    "comptaProReview": {
+      "approved": false,
+      "path": "",
+      "alternative": "",
+      "evidence": ""
+    },
+    "adfEvents": {
+      "approved": false,
+      "path": "",
+      "alternative": "",
+      "evidence": ""
+    },
+    "holistisContent": {
+      "approved": false,
+      "path": "",
+      "alternative": "",
+      "evidence": ""
+    },
+    "vbmOverview": {
+      "approved": false,
+      "path": "",
+      "alternative": "",
+      "evidence": ""
+    },
+    "amaOverview": {
+      "approved": false,
+      "path": "",
+      "alternative": "",
+      "evidence": ""
+    },
+    "lfitOverview": {
+      "approved": false,
+      "path": "",
+      "alternative": "",
+      "evidence": ""
+    },
+    "julieGautierOverview": {
+      "approved": false,
+      "path": "",
+      "alternative": "",
+      "evidence": ""
+    }
+  }
+}
