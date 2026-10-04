@@ -1,5 +1,5 @@
 import { test, expect, type Page, type Locator } from "@playwright/test";
-import { mkdir } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 
 const evidence = process.env.EVIDENCE_DIRECTORY || "artifacts/reveal";
 
@@ -8,6 +8,12 @@ declare global {
     revealAudit: {
       element: Element;
       animation: Animation;
+      createdAt: number;
+      beforeOpacity: string;
+      immediateOpacity: string;
+      topBefore: number;
+      viewportHeight: number;
+      samples: { at: number; time: number; opacity: string; y: number }[];
       finishedAt: number | null;
     }[];
     signalAudit: { element: Element; startedAt: number; iterations: string }[];
@@ -20,17 +26,41 @@ async function auditMotion(page: Page) {
     window.signalAudit = [];
     const animate = Element.prototype.animate;
     Element.prototype.animate = function (frames, options) {
+      const beforeOpacity = getComputedStyle(this).opacity;
+      const topBefore = this.getBoundingClientRect().top;
+      const createdAt = performance.now();
       const animation = animate.call(this, frames, options);
       if (animation.id === "block-reveal") {
         const record: Window["revealAudit"][number] = {
           element: this,
           animation,
+          createdAt,
+          beforeOpacity,
+          immediateOpacity: getComputedStyle(this).opacity,
+          topBefore,
+          viewportHeight: window.innerHeight,
+          samples: [],
           finishedAt: null,
         };
         window.revealAudit.push(record);
         animation.addEventListener("finish", () => {
           record.finishedAt = performance.now();
         });
+        const sample = () => {
+          const style = getComputedStyle(this);
+          record.samples.push({
+            at: performance.now(),
+            time:
+              typeof animation.currentTime === "number"
+                ? animation.currentTime
+                : 0,
+            opacity: style.opacity,
+            y: new DOMMatrixReadOnly(style.transform).m42,
+          });
+          if (animation.playState === "running" || animation.pending)
+            requestAnimationFrame(sample);
+        };
+        requestAnimationFrame(sample);
       }
       return animation;
     };
@@ -76,6 +106,38 @@ async function captureBlock(page: Page, selector: string, path: string) {
   await page.screenshot({ path, fullPage: true, clip });
 }
 
+async function assertOpacityContinuity(page: Page, name: string) {
+  const records = await page.evaluate(() =>
+    window.revealAudit.map(({ element, animation, ...record }) => ({
+      ...record,
+      label: `${element.tagName}.${element.className}`,
+      timing: animation.effect?.getTiming(),
+      keyframes:
+        animation.effect instanceof KeyframeEffect
+          ? animation.effect.getKeyframes()
+          : [],
+    })),
+  );
+  expect(records.length).toBeGreaterThan(0);
+  for (const record of records) {
+    expect(record.beforeOpacity, record.label).toBe("1");
+    expect(record.immediateOpacity, record.label).toBe("1");
+    expect(
+      record.keyframes.every((frame) => frame.opacity === undefined),
+      record.label,
+    ).toBe(true);
+    expect(
+      record.samples.every((sample) => sample.opacity === "1"),
+      record.label,
+    ).toBe(true);
+  }
+  await mkdir(evidence, { recursive: true });
+  await writeFile(
+    `${evidence}/${name}-motion.json`,
+    JSON.stringify(records, null, 2),
+  );
+}
+
 test("reveals are finite, staggered, released to CSS and never replay on scrolling", async ({
   page,
 }) => {
@@ -102,13 +164,43 @@ test("reveals are finite, staggered, released to CSS and never replay on scrolli
       .filter(({ element }) => element.matches(".plus-grid > article"))
       .map(({ animation }) => animation.effect?.getTiming()),
   );
-  expect(timings.map((timing) => timing?.delay)).toEqual([0, 100, 200, 300]);
+  expect(timings.map((timing) => timing?.delay)).toEqual([0, 140, 280, 420]);
   for (const timing of timings)
     expect(timing).toMatchObject({
-      duration: 500,
+      duration: 750,
       iterations: 1,
       easing: "cubic-bezier(0.22, 1, 0.36, 1)",
     });
+  const pacing = await page.evaluate(() =>
+    window.revealAudit
+      .filter(({ element }) => element.matches(".plus-grid > article"))
+      .map(({ animation, createdAt, finishedAt, samples }) => {
+        const delay = animation.effect?.getTiming().delay ?? 0;
+        return {
+          delay,
+          elapsed: Number(finishedAt) - createdAt,
+          startedAt: samples.find((sample) => sample.time >= delay)?.at,
+          middle: samples.find(
+            (sample) =>
+              sample.time >= delay + 250 && sample.time <= delay + 350,
+          ),
+        };
+      }),
+  );
+  for (const [index, record] of pacing.entries()) {
+    expect(record.elapsed).toBeGreaterThanOrEqual(725 + record.delay);
+    expect(record.elapsed).toBeLessThan(900 + record.delay);
+    expect(record.middle?.opacity).toBe("1");
+    expect(record.middle?.y).toBeGreaterThan(0);
+    expect(record.middle?.y).toBeLessThan(16);
+    if (index > 0) {
+      const stagger =
+        Number(record.startedAt) - Number(pacing[index - 1].startedAt);
+      expect(stagger).toBeGreaterThanOrEqual(110);
+      expect(stagger).toBeLessThanOrEqual(170);
+    }
+  }
+  await assertOpacityContinuity(page, "live-problems");
   for (const card of await page.locator(".plus-grid > article").all())
     await visibleFinal(card);
   expect(
@@ -160,7 +252,7 @@ for (const width of [1440, 390]) {
           .find(({ element }) => element.matches(".hero-copy"))
           ?.animation.effect?.getTiming(),
       ),
-    ).toMatchObject({ duration: 220, delay: 0, iterations: 1 });
+    ).toMatchObject({ duration: 550, delay: 0, iterations: 1 });
     expect(
       await page.evaluate(() => {
         const effect = window.revealAudit.find(({ element }) =>
@@ -194,8 +286,8 @@ for (const width of [1440, 390]) {
       };
     });
     expect(sequence.timing).toMatchObject({
-      duration: 500,
-      delay: 100,
+      duration: 750,
+      delay: 140,
       iterations: 1,
     });
     expect(sequence.finishedAt).toEqual(expect.any(Number));
@@ -208,6 +300,7 @@ for (const width of [1440, 390]) {
     ).toBeLessThan(250);
     await settle(page);
     await visibleFinal(page.locator(".hero-diagram"));
+    await assertOpacityContinuity(page, `live-hero-${width}`);
     await page.locator("#services").scrollIntoViewIfNeeded();
     await page.locator(".hero-diagram").scrollIntoViewIfNeeded();
     await settle(page);
@@ -349,6 +442,65 @@ test("deep-linked blocks remain stationary and focused blocks finish immediately
   await expect(card.locator("a")).toBeFocused();
 });
 
+test("a reveal begins just before viewport entry and is still moving on entry", async ({
+  page,
+}) => {
+  await auditMotion(page);
+  await page.goto("/");
+  await page.evaluate(() => document.fonts.ready);
+  await expect
+    .poll(() => page.evaluate(() => window.revealAudit.length))
+    .toBeGreaterThan(0);
+  const card = page.locator(".service-build");
+  await card.evaluate((element) =>
+    window.scrollBy({
+      top: element.getBoundingClientRect().top - window.innerHeight - 24,
+      behavior: "instant",
+    }),
+  );
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          window.revealAudit.filter(({ element }) =>
+            element.matches(".service-build"),
+          ).length,
+      ),
+    )
+    .toBe(1);
+  const distance = await page.evaluate(() => {
+    const record = window.revealAudit.find(({ element }) =>
+      element.matches(".service-build"),
+    );
+    return record ? record.topBefore - record.viewportHeight : null;
+  });
+  expect(distance).toBeGreaterThan(0);
+  expect(distance).toBeLessThanOrEqual(48);
+  await page.waitForFunction(() => {
+    const animation = document
+      .querySelector(".service-build")
+      ?.getAnimations()[0];
+    return (
+      typeof animation?.currentTime === "number" && animation.currentTime >= 120
+    );
+  });
+  await page.evaluate(() => window.scrollBy({ top: 120, behavior: "instant" }));
+  expect(
+    await card.evaluate(
+      (element) => element.getBoundingClientRect().top < window.innerHeight,
+    ),
+  ).toBe(true);
+  expect(
+    await card.evaluate((element) =>
+      element
+        .getAnimations()
+        .some((animation) => animation.playState === "running"),
+    ),
+  ).toBe(true);
+  await settle(page);
+  await assertOpacityContinuity(page, "early-viewport-entry");
+});
+
 for (const reducedMotion of ["no-preference", "reduce"] as const) {
   for (const width of [1440, 390]) {
     test(`visual evidence ${width}px ${reducedMotion}`, async ({ page }) => {
@@ -356,6 +508,7 @@ for (const reducedMotion of ["no-preference", "reduce"] as const) {
       await mkdir(evidence, { recursive: true });
       await page.setViewportSize({ width, height: 1000 });
       await page.emulateMedia({ reducedMotion });
+      await auditMotion(page);
       for (const route of [
         "/",
         "/services/integration-outils-api",
@@ -401,6 +554,8 @@ for (const reducedMotion of ["no-preference", "reduce"] as const) {
         }
         const slug =
           route === "/" ? "home" : route.slice(1).replaceAll("/", "-");
+        if (reducedMotion === "no-preference")
+          await assertOpacityContinuity(page, `${slug}-${width}`);
         await page.evaluate(() =>
           window.scrollTo({ top: 0, behavior: "instant" }),
         );
@@ -412,6 +567,7 @@ for (const reducedMotion of ["no-preference", "reduce"] as const) {
           for (const selector of [
             ".problems",
             "#services",
+            "#realisations",
             "#methode",
             ".about-preview",
             "#contact",

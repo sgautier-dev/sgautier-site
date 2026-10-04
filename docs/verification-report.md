@@ -1,4 +1,49 @@
-# Verification report — V2.1 motion
+# Verification report — smoother motion
+
+Execution date: 2026-10-04. Starting point: local `main` at `a985433460fc0c8267a8e657ea1814cd7ce12358`. Environment: macOS, Node 24.20.0, npm 11.19.0, Next 16.3.8, Playwright 1.63.0, headless Chrome 157. This section supersedes the historical results below. **Local preview validated; website publication remains blocked.**
+
+## Executed verification
+
+| Command | Actual result | Evidence under `artifacts/motion-tuning/` |
+| --- | --- | --- |
+| `npm run check` | PASS: ESLint, strict TypeScript and 64 tests in six files | `check.log` |
+| `npm run build` | PASS; all thirteen page routes remain prerendered | `build.log` |
+| `EVIDENCE_DIRECTORY=artifacts/motion-tuning/screenshots npm run test:e2e` | PASS: 51/51, zero skipped, retried or flaky tests, 270.9s | `browser.log`, `browser-results.json` |
+| `npm run measure` | PASS: twelve new Lighthouse runs, three per route | `lighthouse.log`, `lighthouse/` |
+| `git diff --check` | PASS | Local diff review |
+
+The original flash was reproduced before changing the controller: SSR opacity was 1 immediately before the native animate call and 0 immediately afterward on the diagram, headings, cards and method blocks. The first opacity keyframe and backwards fill hid already visible content during the stagger. The old negative observer margin also started the reveal after viewport entry. See `before/opacity-audit.json`.
+
+The final controller retains opacity 1 on every reveal block. Ordinary blocks move 16px over 750ms; related delays are 0/140/280/420ms. Hero copy moves 8px over 550ms without a delay. The observer starts up to 48px below the viewport. All headings, text, cards, diagrams and internal ArticleSections use transform-only motion; no light-fade variant remains. No dependency or additional target was introduced.
+
+The unpaused browser audit recorded **120 block instances across ten audit files and 5,894 animation-frame samples, with zero opacity deviations**. These are repeated instances across scenarios, not 120 distinct site blocks. Measured completion times for the four Problems cards were approximately 774/921/1054/1204ms including stagger; sampled start intervals were 163/134/151ms, consistent with the configured 140ms and animation-frame scheduling. Tests assert actual duration, intermediate translation and stagger rather than only final visibility. Another test confirms a card starts 24px below the viewport and is still moving when scrolled into view. The single 1.8s hero signal still starts after diagram completion, with its existing 80ms delay.
+
+Once-only behavior, reduced motion (including a preference change during animation), no-JavaScript visibility, missing observer support, client navigation, focus and direct anchors pass. All thirteen routes retain the same reveal map, without nested targets or breadcrumb/footer/field animation. Existing keyboard, contact validation and field retention, project restrictions, seven responsive widths and 200% CSS text-enlargement tests pass. Axe scans six representative routes at 390 and 1440px plus contact errors with zero violations. No real email was sent.
+
+## Lighthouse comparison with V2.1
+
+The before column uses the **archived V2.1 production reports**, copied to `before/lighthouse/`; these were not rerun in this pass. The after column contains twelve newly executed runs. Both use Lighthouse 13.5.0 mobile simulated throttling, 412 × 823 at DPR 1.75, 4× CPU slowdown, RTT 150ms and 1,638.4 Kbps throughput. Values are medians of three runs per route; settings and raw HTML/JSON reports are retained.
+
+| Route | Performance before → after | LCP before → after | TBT before → after | CLS before → after | Transferred JS before → after |
+| --- | --- | --- | --- | --- | --- |
+| `/` | 95 → 95 | 2860.21 → 2859.48ms | 107 → 104ms | 0 → 0 | 153,263 → 153,244 bytes |
+| `/services/integration-outils-api` | 96 → 96 | 2708.16 → 2708.67ms | 106 → 108ms | 0 → 0 | 153,263 → 153,244 bytes |
+| `/realisations/compta-pro` | 96 → 95 | 2707.53 → 2707.61ms | 103.5 → 110.5ms | 0 → 0 | 159,467 → 159,448 bytes |
+| `/contact` | 96 → 96 | 2707.42 → 2706.56ms | 104 → 99ms | 0 → 0 | 158,299 → 158,280 bytes |
+
+Accessibility and best practices remain 100 on every run; CLS remains 0. Home JavaScript is 19 transferred bytes smaller. Compta Pro's performance median falls one point, with TBT 7ms higher and effectively unchanged LCP; this small local variation does not establish a production regression or improvement. SEO remains 69/66 because preview noindex is retained: `is-crawlable` is the only failed SEO audit in all twelve reports. **The existing 2.5s LCP target remains unmet.** These are local lab measurements, not field Core Web Vitals.
+
+## Visual evidence and remaining limits
+
+`screenshots/frames-*.png` contains 36 controlled stills: Hero, Problems, Services, Projects, Method and an internal service section, at 1440/390px and 0/300/1200ms. Actual native animations are paused and sought for these captures; they establish readable initial/intermediate/final appearance, not real-time pacing. Separate unpaused JSON audits establish timing and opacity continuity. Representative initial, intermediate and final captures were visually inspected across all six scenes. Normal/reduced full pages and section crops remain available; 42 current route/width captures are in `responsive/`. That copied directory also contains fourteen historical `early-*`, `review-*` and `final-*` files; those are not new evidence for this pass. `opacity-summary.json` summarizes the frame audit.
+
+Approval/legal files retain their before-snapshot hashes. The owner's pre-existing `next-env.d.ts` modification is restored and excluded from the commit. The owner's new instruction permits a single coherent commit and an ordinary push only after checking the verified origin and fresh remote ancestry. The actual synchronization result is recorded in local `git-sync.log` and the handoff. No deployment, domain action, provider change, real email, financial-data access or old/client repository modification is part of this pass.
+
+Native browser zoom, screen readers, Safari/Firefox and real provider receipt were NOT RUN. Release-gate, synthetic final-content and dependency audit checks were not rerun in this pass; their dated evidence remains below. Publication approvals remain unchanged, and missing assets/legal/provider inputs remain blockers. See `motion-tuning.md`, `implementation-state.md` and `release-checklist.md`.
+
+---
+
+# Previous verification report — V2.1 motion
 
 Execution date: 2026-10-04. Starting point: `main` at `8090c60fae4142b59814dbbcbe4eddb36ea64cab`. Environment: macOS, Node 24.20.0, npm 11.19.0, Next 16.3.8, Playwright 1.63.0, headless Chrome 157. This section supersedes the historical results below. **Local preview validated; publication remains blocked.**
 
