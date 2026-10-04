@@ -2,7 +2,11 @@
 import { useSearchParams } from "next/navigation";
 export function ContactIntent() {
   const params = useSearchParams();
-  return params.get("intent") === "diagnostic" ? (
-    <p className="eyebrow">Votre demande · Diagnostic automatisation</p>
-  ) : null;
+  return (
+    <div className="contact-intent">
+      {params.get("intent") === "diagnostic" ? (
+        <p className="eyebrow">Votre demande · Diagnostic automatisation</p>
+      ) : null}
+    </div>
+  );
 }

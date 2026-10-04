@@ -27,7 +27,7 @@ export default function ContactPage() {
       </PageIntro>
       <div className="contact-page">
         <div id="formulaire">
-          <Suspense fallback={null}>
+          <Suspense fallback={<div className="contact-intent" />}>
             <ContactIntent />
           </Suspense>
           <ContactForm available={getContactConfig() !== null} />

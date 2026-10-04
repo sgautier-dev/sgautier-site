@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/data/site";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 export function Footer() {
   return (
     <footer className="site-footer container">
@@ -22,11 +23,16 @@ export function Footer() {
             Automatisation des processus
           </Link>
         </nav>
+        <nav aria-label="Navigation de pied de page">
+          <Link href="/realisations">Réalisations</Link>
+          <Link href="/a-propos">À propos</Link>
+          <Link href="/contact">Contact</Link>
+        </nav>
         <nav aria-label="Profils professionnels">
           {site.profiles.map((profile) => (
-            <a key={profile.name} href={profile.href}>
-              {profile.name} <span aria-hidden="true">↗</span>
-            </a>
+            <ExternalLink key={profile.name} href={profile.href}>
+              {profile.name}
+            </ExternalLink>
           ))}
         </nav>
       </div>

@@ -4,13 +4,13 @@ import {
   SectionIntro,
   CallToAction,
   TagList,
-  TextLink,
 } from "@/components/ui/Primitives";
 import { Breadcrumbs } from "@/components/ui/Article";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ProjectVisual } from "@/components/projects/ProjectVisual";
 import { featuredProjects, secondaryProjects } from "@/data/projects";
 import { getMetadata } from "@/lib/seo";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
 export const metadata = getMetadata("/realisations");
 export default function ProjectsPage() {
@@ -54,9 +54,9 @@ export default function ProjectsPage() {
               <span className="project-status">{project.statusLabel}</span>
               <TagList items={project.tags} />
               {project.externalUrl && (
-                <TextLink href={project.externalUrl}>
+                <ExternalLink href={project.externalUrl} className="text-link">
                   Voir le site {project.name}
-                </TextLink>
+                </ExternalLink>
               )}
             </article>
           ))}

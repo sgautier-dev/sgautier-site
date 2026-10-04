@@ -20,7 +20,7 @@ async function fillForm() {
     "test@example.com",
   );
   await user.type(
-    screen.getByLabelText("Qu’aimeriez-vous simplifier ?"),
+    screen.getByLabelText("Parlez-moi de votre besoin"),
     "A synthetic request to simplify a workflow.",
   );
   return user;
@@ -62,7 +62,7 @@ describe("contact interface with the real next-safe-action hook", () => {
     expect(screen.getByLabelText("Nom", { exact: true })).toHaveValue(
       "Test Person",
     );
-    expect(screen.getByLabelText("Qu’aimeriez-vous simplifier ?")).toHaveValue(
+    expect(screen.getByLabelText("Parlez-moi de votre besoin")).toHaveValue(
       "A synthetic request to simplify a workflow.",
     );
     expect(
@@ -96,9 +96,7 @@ describe("contact interface with the real next-safe-action hook", () => {
       await screen.findByText(contactMessages.accepted),
     ).toBeInTheDocument();
     expect(screen.getByLabelText("Nom", { exact: true })).toHaveValue("");
-    expect(screen.getByLabelText("Qu’aimeriez-vous simplifier ?")).toHaveValue(
-      "",
-    );
+    expect(screen.getByLabelText("Parlez-moi de votre besoin")).toHaveValue("");
   });
   it("handles an unknown network outcome without exposing or retrying the error", async () => {
     action.mockRejectedValue(new Error("private network detail"));

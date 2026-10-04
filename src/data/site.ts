@@ -17,5 +17,20 @@ export const navigation = [
   { label: "Services", href: "/services" },
   { label: "Réalisations", href: "/realisations" },
   { label: "À propos", href: "/a-propos" },
-  { label: "Contact", href: "/contact" },
+] as const;
+
+export const serviceNavigation = [
+  { label: "Tous les services", href: "/services" },
+  {
+    label: "Développement web sur mesure",
+    href: "/services/developpement-web",
+  },
+  {
+    label: "Intégration d’outils & API",
+    href: "/services/integration-outils-api",
+  },
+  {
+    label: "Automatisation des processus",
+    href: "/services/automatisation-processus",
+  },
 ] as const;

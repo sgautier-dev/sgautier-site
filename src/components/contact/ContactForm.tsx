@@ -16,7 +16,7 @@ const labels: Record<ContactField, string> = {
   name: "Nom",
   email: "Email",
   activity: "Entreprise / activité",
-  message: "Qu’aimeriez-vous simplifier ?",
+  message: "Parlez-moi de votre besoin",
 };
 const limits: Record<ContactField, number> = {
   name: 100,
@@ -103,8 +103,8 @@ export function ContactForm({ available = false }: { available?: boolean }) {
         )}
         {field === "message" && (
           <p className="field-help" id={`${fieldId}-help`}>
-            Décrivez le fonctionnement actuel, ce qui vous pose problème et, si
-            vous le savez, les outils déjà utilisés.
+            Décrivez ce que vous souhaitez créer, connecter, automatiser ou
+            améliorer et, si vous le savez, les outils déjà utilisés.
           </p>
         )}
         {error && (

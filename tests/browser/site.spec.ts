@@ -155,7 +155,7 @@ test("keyboard navigation and mobile disclosure", async ({ page }) => {
   ).not.toBe("none");
   await page.keyboard.press("Enter");
   await expect(page.locator("main")).toBeFocused();
-  const menu = page.locator("summary");
+  const menu = page.locator(".mobile-nav > summary");
   await menu.focus();
   await page.keyboard.press("Enter");
   await expect(menu).toHaveAttribute("aria-expanded", "true");
@@ -171,7 +171,7 @@ test("keyboard navigation and mobile disclosure", async ({ page }) => {
   await page.keyboard.press("Enter");
   await page
     .getByRole("navigation", { name: "Navigation mobile" })
-    .getByRole("link", { name: "Contact", exact: true })
+    .getByRole("link", { name: "Parler de mon besoin" })
     .click();
   await expect(page).toHaveURL(/\/contact$/);
   await expect(menu).toHaveAttribute("aria-expanded", "false");
@@ -184,9 +184,7 @@ test("real credential-free action validates and preserves fields", async ({
   await expect(
     page.getByText("Votre demande · Diagnostic automatisation"),
   ).toBeVisible();
-  await expect(page.getByLabel("Qu’aimeriez-vous simplifier ?")).toHaveValue(
-    "",
-  );
+  await expect(page.getByLabel("Parlez-moi de votre besoin")).toHaveValue("");
   await page.getByRole("button", { name: /Envoyer ma demande/ }).click();
   const form = page.getByRole("form", { name: "Formulaire de contact" });
   await expect(form.getByRole("alert")).toContainText("Vérifiez");
@@ -197,14 +195,14 @@ test("real credential-free action validates and preserves fields", async ({
   await page.getByLabel("Nom", { exact: true }).fill("Test Person");
   await page.getByLabel("Email", { exact: true }).fill("test@example.com");
   await page
-    .getByLabel("Qu’aimeriez-vous simplifier ?")
+    .getByLabel("Parlez-moi de votre besoin")
     .fill("Synthetic local test, no delivery requested.");
   await page.getByRole("button", { name: /Envoyer ma demande/ }).click();
   await expect(form.getByRole("alert")).toHaveText(contactMessages.unavailable);
   await expect(page.getByLabel("Nom", { exact: true })).toHaveValue(
     "Test Person",
   );
-  await expect(page.getByLabel("Qu’aimeriez-vous simplifier ?")).toHaveValue(
+  await expect(page.getByLabel("Parlez-moi de votre besoin")).toHaveValue(
     "Synthetic local test, no delivery requested.",
   );
   await expect(
@@ -241,13 +239,13 @@ test("no-JS content, native menu and safe form fallback", async ({
   await expect(
     page.getByText(testimonials[0].quote, { exact: true }),
   ).toBeVisible();
-  await page.locator("summary").click();
+  await page.locator(".mobile-nav > summary").click();
   await expect(
     page.getByRole("navigation", { name: "Navigation mobile" }),
   ).toBeVisible();
   await page
     .getByRole("navigation", { name: "Navigation mobile" })
-    .getByRole("link", { name: "Contact", exact: true })
+    .getByRole("link", { name: "Parler de mon besoin" })
     .click();
   await expect(
     page.getByText(/Le formulaire nécessite JavaScript/),

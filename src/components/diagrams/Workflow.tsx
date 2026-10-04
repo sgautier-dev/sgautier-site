@@ -84,14 +84,14 @@ export function BuildDiagram() {
     <figure className="build-diagram">
       <div className="generic-interface" aria-hidden="true">
         <div className="interface-sidebar">
-          <b>Votre outil</b>
+          <i />
           <i />
           <i />
           <i />
         </div>
         <div className="interface-body">
           <div className="interface-toolbar">
-            <span>Vue d’ensemble</span>
+            <i />
             <span>+</span>
           </div>
           <div className="interface-fields">
@@ -104,7 +104,7 @@ export function BuildDiagram() {
             <div />
           </div>
           <span className="interface-action">
-            Une interface à votre mesure <span>↗</span>
+            <i /> <span>↗</span>
           </span>
         </div>
       </div>

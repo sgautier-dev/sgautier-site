@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { navigation } from "@/data/site";
+import { navigation, serviceNavigation } from "@/data/site";
 import { Button } from "@/components/ui/Primitives";
 import { MobileNav } from "./MobileNav";
+import { NavDisclosure } from "./NavDisclosure";
 
 export function Header() {
   return (
@@ -13,18 +14,37 @@ export function Header() {
             <i />
           </span>
           <span>
-            Sébastien{" "}
-            <br />
+            Sébastien <br />
             Gautier<span className="identity-dot">.</span>
             <span className="sr-only"> — Accueil</span>
           </span>
         </Link>
         <nav aria-label="Navigation principale" className="desktop-nav">
-          {navigation.map((item) => (
-            <Link href={item.href} key={item.href}>
-              {item.label}
-            </Link>
-          ))}
+          {navigation.map((item) =>
+            item.href === "/services" ? (
+              <div className="services-nav" key={item.href}>
+                <Link href={item.href}>{item.label}</Link>
+                <NavDisclosure
+                  id="desktop-services"
+                  label="Afficher les services"
+                  className="services-disclosure"
+                  iconOnly
+                >
+                  <ul className="services-submenu">
+                    {serviceNavigation.map((service) => (
+                      <li key={service.href}>
+                        <Link href={service.href}>{service.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </NavDisclosure>
+              </div>
+            ) : (
+              <Link href={item.href} key={item.href}>
+                {item.label}
+              </Link>
+            ),
+          )}
         </nav>
         <Button href="/contact" className="header-cta">
           Parler de mon besoin
