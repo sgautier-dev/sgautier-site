@@ -2002,7 +2002,138 @@
     font-size: 0.875rem;
   }
 }
+
+/* The diagram remains complete while a single decorative signal passes. */
+.workflow-map {
+  position: relative;
+  isolation: isolate;
+}
+.flow-column,
+.flow-center {
+  z-index: 1;
+}
+.workflow-signal {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  color: var(--color-accent);
+}
+.workflow-signal path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 4px;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke-dasharray: 3 100;
+  opacity: 0;
+  animation: workflow-pass 1.8s 0.2s linear 1 both;
+}
+.signal-vertical {
+  display: none;
+}
+@keyframes workflow-pass {
+  0% {
+    stroke-dashoffset: 3;
+    opacity: 0;
+  }
+  10%,
+  85% {
+    opacity: 0.65;
+  }
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}
+.button svg,
+.text-link svg,
+.external-arrow,
+.mobile-cta > span {
+  transition: transform 160ms ease;
+}
+:is(.button, .text-link):is(:hover, :focus-visible) svg,
+a:is(:hover, :focus-visible) .external-arrow,
+.mobile-cta:is(:hover, :focus-visible) > span {
+  transform: translateX(3px);
+}
+.automation-trunk {
+  position: relative;
+}
+.automation-trunk::after {
+  content: "";
+  position: absolute;
+  right: 16.67%;
+  bottom: -27px;
+  height: 27px;
+  border-left: 1px solid #6fa99c;
+}
+.automation-branches {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 20px;
+  margin-top: 26px;
+  border-top: 1px solid #6fa99c;
+}
+.automation-branch {
+  position: relative;
+  padding-top: 18px;
+}
+.automation-branch::before {
+  content: "↓";
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  color: var(--color-accent);
+}
+.automation-branch > p {
+  font-size: 0.75rem;
+  margin-bottom: 12px;
+}
+.automation-diagram .automation-branch ol {
+  flex-direction: column;
+  gap: 18px;
+}
+.automation-diagram .automation-branch li {
+  min-height: 48px;
+  flex-basis: auto;
+}
+.automation-diagram .automation-branch li:not(:last-child)::after {
+  content: "↓";
+  display: block;
+  top: auto;
+  left: 50%;
+  right: auto;
+  bottom: -19px;
+  transform: none;
+}
+.automation-diagram .human-stage {
+  background: #fff3dc;
+  color: var(--color-human-text);
+  border-color: var(--color-human);
+}
+.service-automate .automation-branch::before {
+  color: var(--color-light-teal);
+}
+@media (max-width: 540px) {
+  .automation-trunk::after {
+    right: 50%;
+  }
+  .signal-horizontal {
+    display: none;
+  }
+  .signal-vertical {
+    display: block;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  :is(.button, .text-link):is(:hover, :focus-visible) svg,
+  a:is(:hover, :focus-visible) .external-arrow,
+  .mobile-cta:is(:hover, :focus-visible) > span {
+    transform: none;
+  }
   *,
   *::before,
   *::after {

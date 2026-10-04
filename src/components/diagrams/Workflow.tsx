@@ -6,6 +6,22 @@ export function HeroWorkflowDiagram() {
         <span>SCHÉMA</span>
       </div>
       <div className="workflow-map">
+        <svg
+          className="workflow-signal signal-horizontal"
+          viewBox="0 0 1000 500"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path d="M 0 250 H 1000" pathLength="100" />
+        </svg>
+        <svg
+          className="workflow-signal signal-vertical"
+          viewBox="0 0 500 1000"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path d="M 250 0 V 1000" pathLength="100" />
+        </svg>
         <div className="flow-column inputs">
           {["Formulaire", "Email", "Tableur", "Paiement"].map((item, index) => (
             <div className={`flow-node node-${index}`} key={item}>
@@ -127,11 +143,29 @@ export function IntegrationDiagram() {
 }
 export function AutomationDiagram() {
   return (
-    <Flow
-      caption="Un processus, des contrôles"
-      steps={["Entrée", "Traitement", "Condition", "Action"]}
-      human="Validation humaine lorsque nécessaire"
-    />
+    <figure className="process-diagram automation-diagram">
+      <figcaption>Un processus, des contrôles</figcaption>
+      <ol className="automation-trunk">
+        {["Entrée", "Traitement", "Condition"].map((step) => (
+          <li key={step}>{step}</li>
+        ))}
+      </ol>
+      <div className="automation-branches">
+        <div className="automation-branch">
+          <p>Automatisable</p>
+          <ol aria-label="Parcours automatisable">
+            <li>Action</li>
+          </ol>
+        </div>
+        <div className="automation-branch human-branch">
+          <p>Validation requise</p>
+          <ol aria-label="Parcours avec validation">
+            <li className="human-stage">Validation humaine</li>
+            <li>Action</li>
+          </ol>
+        </div>
+      </div>
+    </figure>
   );
 }
 export function ComptaProFlow() {

@@ -14,9 +14,14 @@ Validation: `npm run check` passed (51 unit tests), production build passed, 30 
 
 Evidence directory: `artifacts/v2/batch-1/` (local, ignored).
 
+## Batch 2 — Diagrams and finite motion
+
+A decorative CSS/SVG signal crosses the hero once in 1.8 seconds and disappears. Content remains server-rendered and visible throughout. Reduced-motion removes animation and arrow transforms; keyboard focus receives the same small arrow feedback as hover. The automation diagram now branches from Condition into Action or Human validation then Action. ADF retains separate API-read and webhook-revalidation diagrams.
+
+Validation: static checks and 51 unit tests passed; build passed; all 34 browser tests passed, including normal/reduced motion, no-JavaScript, branch order and responsive axe checks. Hero final-state and branch captures were inspected. Evidence: `artifacts/v2/batch-2/`.
+
 ## Remaining batches
 
-2. Finite hero signal, hover/focus feedback and decision-before-action automation diagram.
 3. Terracotta human accents and related favicon.
 4. Concise service and case-study copy preserving scope and status.
 5. Approved-asset rendering, rendered release checks, isolated public-mode regression and stronger text-resize verification.
