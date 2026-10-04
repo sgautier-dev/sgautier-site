@@ -19,7 +19,15 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
-  const classes = clsx("button", secondary && "button-secondary", className);
+  const classes = clsx(
+    "button",
+    typeof props.href === "string" &&
+      props.href.startsWith("/contact") &&
+      !secondary &&
+      "button-human",
+    secondary && "button-secondary",
+    className,
+  );
   if (props.href !== undefined)
     return (
       <Link {...props} className={classes}>

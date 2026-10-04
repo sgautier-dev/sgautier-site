@@ -202,7 +202,7 @@ export function ContactForm({ available = false }: { available?: boolean }) {
         </p>
         <button
           type="submit"
-          className="button form-button"
+          className="button button-human form-button"
           disabled={action.isPending}
           aria-busy={action.isPending}
         >

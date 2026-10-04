@@ -1,3 +1,7 @@
+# V2 refinement in progress
+
+The original preview described below is now undergoing the requested V2 pass. Batches 1–3 are validated and committed locally; editorial refinement and release-hardening remain. See `refinement-v2.md` for current evidence and scope. Publication is still blocked.
+
 # Implementation state
 
 Updated 2026-10-04. The local preview implementation is complete in the new isolated `sgautier-site` repository on `main`. Publication remains blocked. Portfolio2025 is unchanged; client repositories and financial storage were not accessed. No remote resource, push, deployment, domain change or real email was performed.

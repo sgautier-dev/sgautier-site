@@ -10,8 +10,10 @@
   --color-accent: #0f766e;
   --color-accent-strong: #115e59;
   --color-accent-pale: #e8f3f0;
-  --color-human: #d97706;
-  --color-human-text: #92400e;
+  --color-human: #a9523b;
+  --color-human-strong: #8d4331;
+  --color-human-pale: #f3e5de;
+  --color-human-text: #93442f;
   --color-dark: #0b1110;
   --color-muted-dark: #a8b3b0;
   --color-light-teal: #5eead4;
@@ -191,7 +193,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: var(--color-accent);
+  background: var(--color-human);
 }
 .identity-dot {
   color: var(--color-accent);
@@ -232,6 +234,15 @@
 }
 .button:hover {
   background: var(--color-accent-strong);
+}
+.button-human {
+  background: var(--color-human);
+}
+.button-human:hover {
+  background: var(--color-human-strong);
+}
+.portrait img {
+  border-bottom: 4px solid var(--color-human);
 }
 .button-secondary {
   background: transparent;
@@ -421,7 +432,7 @@
 }
 .human-check {
   font-size: 0.75rem;
-  background: #fef3dc;
+  background: var(--color-human-pale);
   color: var(--color-human-text);
   padding: 5px 6px;
   border-radius: 4px;
@@ -669,7 +680,7 @@
   color: var(--color-accent);
 }
 .human-note {
-  background: #fff3dc;
+  background: var(--color-human-pale);
   color: var(--color-human-text);
   margin: 18px 0 0;
   padding: 9px 12px;
@@ -1340,7 +1351,7 @@
   margin: 0;
 }
 .draft-notice {
-  background: #fff1d6;
+  background: var(--color-human-pale);
   border-left: 3px solid var(--color-human);
   color: var(--color-human-text);
   padding: 20px 24px;
@@ -2108,8 +2119,8 @@ a:is(:hover, :focus-visible) .external-arrow,
   bottom: -19px;
   transform: none;
 }
-.automation-diagram .human-stage {
-  background: #fff3dc;
+.automation-diagram .automation-branch .human-stage {
+  background: var(--color-human-pale);
   color: var(--color-human-text);
   border-color: var(--color-human);
 }

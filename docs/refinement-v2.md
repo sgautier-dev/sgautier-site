@@ -22,7 +22,12 @@ Validation: static checks and 51 unit tests passed; build passed; all 34 browser
 
 ## Remaining batches
 
-3. Terracotta human accents and related favicon.
+## Batch 3 — Human accents and favicon
+
+Terracotta `#A9523B` and pale `#F3E5DE` replace amber for human validation and selected contact actions; tool connections remain teal. The portrait receives a small warm edge. The favicon now echoes the header's lowercase sg monogram, with an ivory mark and warm dot on teal.
+
+Validation: check (51 unit tests), production build and all 34 browser tests passed. Axe checks include the changed light/dark sections. Calculated text contrasts: contact 5.31:1, hover 7.05:1, human validation 5.49:1. The hero capture was inspected. Evidence: `artifacts/v2/batch-3/`.
+
 4. Concise service and case-study copy preserving scope and status.
 5. Approved-asset rendering, rendered release checks, isolated public-mode regression and stronger text-resize verification.
 
